@@ -1,0 +1,18 @@
+{
+  "id": "flint-copilot",
+  "name": "Copilot",
+  "version": "1.0.0",
+  "description": "Native AI assistant with local LLM integration, multimodal reasoning, automated summarization, and context-aware chat.",
+  "author": "Yuliet Li",
+  "minAppVersion": "0.4.0",
+  "category": "Productivity",
+  "tags": [
+    "ai",
+    "copilot",
+    "llm",
+    "assistant",
+    "chat"
+  ],
+  "icon": "sparkles",
+  "repoUrl": "https://github.com/yvliet/flint-copilot"
+}
