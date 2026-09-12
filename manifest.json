@@ -1,9 +1,10 @@
 {
-  "id": "flint-copilot",
+  "id": "noether-copilot",
   "name": "Copilot",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Native AI assistant with local LLM integration, multimodal reasoning, automated summarization, and context-aware chat.",
   "author": "Yuliet Li",
+  "authorUrl": "https://github.com/yvliet",
   "minAppVersion": "0.4.0",
   "category": "Productivity",
   "tags": [
@@ -13,6 +14,14 @@
     "assistant",
     "chat"
   ],
-  "icon": "sparkles",
-  "repoUrl": "https://github.com/yvliet/flint-copilot"
+  "icon": {
+    "name": "sparkles",
+    "type": "gradient",
+    "gradientColors": [
+      "#9333ea",
+      "#6b21a8"
+    ],
+    "gradientDirection": "135deg"
+  },
+  "repoUrl": "https://github.com/yvliet/noether-copilot"
 }
