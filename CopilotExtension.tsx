@@ -474,6 +474,115 @@ export class CopilotExtension extends Extension {
       ],
     });
 
+    // 6a. Register First-Class Tab Context Menu Action
+    if (typeof (this as any).registerTabContextMenuAction === 'function') {
+      (this as any).registerTabContextMenuAction({
+        id: 'copilot:tab-ask-context',
+        title: 'Ask Copilot About Note',
+        order: 35,
+        action: (tab: any) => {
+          this.app.workspace.setActiveSidebarTab('right', 'copilot');
+          this.app.workspace.setSidebarOpen('right', true);
+          useCopilotStore.getState().setDraftPrompt(`Regarding "${tab?.title || 'this note'}": `);
+        },
+      });
+    }
+
+    // 6b. Register Omnibox Search Provider (Ctrl+P / Ctrl+K with 'ai:' prefix)
+    if (typeof (this as any).registerSearchProvider === 'function') {
+      (this as any).registerSearchProvider({
+        id: 'copilot-omni',
+        prefix: 'ai:',
+        placeholder: 'Ask Copilot anything or run prompt...',
+        search: async (query: string) => {
+          const q = query.trim();
+          if (!q) {
+            return [
+              {
+                id: 'copilot:quick-summarize',
+                title: 'Summarize Active Note',
+                description: 'Generate concise executive summary in Copilot',
+                category: 'Copilot AI',
+                badge: 'AI',
+                onSelect: () => {
+                  const title = this.app.vault.activeDocument?.title || 'the active note';
+                  executeCopilotChatPrompt(
+                    this.app,
+                    `Please provide a clear, structured summary of "${title}" with an executive overview and key takeaways.`
+                  );
+                },
+              },
+              {
+                id: 'copilot:quick-tasks',
+                title: 'Extract Tasks from Active Note',
+                description: 'Find todos and action items with Copilot',
+                category: 'Copilot AI',
+                badge: 'AI',
+                onSelect: () => {
+                  const title = this.app.vault.activeDocument?.title || 'the active note';
+                  executeCopilotChatPrompt(
+                    this.app,
+                    `Extract all action items, tasks, and todos from "${title}" as a markdown checklist.`
+                  );
+                },
+              },
+              {
+                id: 'copilot:open-sidebar',
+                title: 'Open Copilot Chat Sidebar',
+                description: 'Focus Copilot assistant on right sidebar',
+                category: 'Copilot AI',
+                badge: 'Chat',
+                onSelect: () => {
+                  this.app.workspace.setActiveSidebarTab('right', 'copilot');
+                  this.app.workspace.setSidebarOpen('right', true);
+                },
+              },
+            ];
+          }
+
+          return [
+            {
+              id: `copilot:ask-${Date.now()}`,
+              title: `Ask Copilot: "${q}"`,
+              description: 'Execute query with active LLM provider and attach note context',
+              category: 'Copilot AI',
+              badge: 'Prompt',
+              onSelect: () => {
+                executeCopilotChatPrompt(this.app, q);
+              },
+            },
+          ];
+        },
+      });
+    }
+
+    // 6c. Register Universal Document Title Decorator (AI badge in header)
+    if (typeof (this as any).registerDocumentTitleDecorator === 'function') {
+      (this as any).registerDocumentTitleDecorator({
+        id: 'copilot:doc-pill',
+        order: 50,
+        render: (_doc: any) => {
+          const store = useCopilotStore.getState();
+          const provider = store.provider;
+          if (!provider) return null;
+          return React.createElement(
+            'span',
+            {
+              className: 'inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-mono cursor-pointer select-none bg-[var(--noether-btn-hover-bg,#333)] text-[var(--noether-text-muted,#888)] border border-[var(--noether-border,#222)] hover:text-[var(--noether-text,#fff)]',
+              title: `Copilot Active: ${provider} (${store.models[provider] || 'default'}) • Click to chat`,
+              onClick: (e: React.MouseEvent) => {
+                e.stopPropagation();
+                this.app.workspace.setActiveSidebarTab('right', 'copilot');
+                this.app.workspace.setSidebarOpen('right', true);
+              },
+            },
+            React.createElement('span', { className: 'w-1.5 h-1.5 rounded-full bg-purple-400 shrink-0' }),
+            React.createElement('span', null, provider)
+          );
+        },
+      });
+    }
+
     // 7. Register Document Header Dropdown Actions
     this.registerDocMenuAction({
       id: 'copilot-doc-summarize',
