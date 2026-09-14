@@ -1,8 +1,8 @@
 /**
  * @module CopilotSidebarView
  * @description
- * High-density right sidebar view for Copilot For Flint, mirroring the modern AI workspace
- * design pattern with native Flint theming:
+ * High-density right sidebar view for Copilot For Noether, mirroring the modern AI workspace
+ * design pattern with native Noether theming:
  * - Dynamic model-branded accent session topic pill with instant 1-click new session
  * - Unified input card container with internal bottom controls (+ context, model picker, tool mode, circular send)
  * - Collapsible multi-step tool execution accordions (Read/Search tools, Edit/Create tools)
@@ -17,7 +17,7 @@
 
 import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { createPortal } from 'react-dom';
-import { useFlintApp } from '@/core/app/AppContext';
+import { useNoetherApp } from '@/core/app/AppContext';
 import { DynamicHugeIcon } from '@/components/common/IconPicker';
 import {
   useCopilotStore,
@@ -94,7 +94,7 @@ const CopilotMatrixLoader: React.FC<{ isWorking?: boolean }> = React.memo(({ isW
         `}</style>
       )}
       <span
-        className="inline-grid grid-cols-3 grid-rows-3 gap-[2px] w-2.5 h-2.5 shrink-0 select-none text-[var(--flint-text-muted,#777777)]"
+        className="inline-grid grid-cols-3 grid-rows-3 gap-[2px] w-2.5 h-2.5 shrink-0 select-none text-[var(--noether-text-muted,#777777)]"
         aria-hidden="true"
       >
         {MATRIX_DELAYS.map((delay, i) => (
@@ -217,7 +217,7 @@ function formatToolExecutionFriendly(tc: ToolExecutionDetail): {
   } else {
     // Clean fallback for custom extension tools
     const cleanName = tc.name
-      .replace(/^(flint_|core_|ext_)/, '')
+      .replace(/^(Noether_|core_|ext_)/, '')
       .replace(/[_-]/g, ' ')
       .trim();
     const formatted = cleanName.charAt(0).toUpperCase() + cleanName.slice(1);
@@ -233,7 +233,7 @@ function formatToolExecutionFriendly(tc: ToolExecutionDetail): {
 }
 
 export const CopilotSidebarView: React.FC = () => {
-  const app = useFlintApp();
+  const app = useNoetherApp();
 
   const provider = useCopilotStore((s) => s.provider);
   const models = useCopilotStore((s) => s.models);
@@ -521,7 +521,7 @@ export const CopilotSidebarView: React.FC = () => {
       const firstLine = content.split('\n')[0].replace(/^[#\s*`-]+/, '').slice(0, 40).trim();
       const title = firstLine || `Copilot Note ${new Date().toLocaleDateString()}`;
 
-      const res = await app.tools.executeTool('flint_create_note', {
+      const res = await app.tools.executeTool('Noether_create_note', {
         title,
         content,
       });
@@ -645,7 +645,7 @@ export const CopilotSidebarView: React.FC = () => {
           app.workspace.openTab(found.id);
           app.workspace.showToast(`Opened "${found.title}"`);
         } else {
-          const res = await app.tools.executeTool('flint_search_notes', { query: clean });
+          const res = await app.tools.executeTool('Noether_search_notes', { query: clean });
           if (!res.isError && res.content.length > 0) {
             app.workspace.showToast(`Searched hearth for "${clean}"`);
           } else {
@@ -797,7 +797,7 @@ export const CopilotSidebarView: React.FC = () => {
 
   return (
     <div className="flex flex-col h-full select-none text-xs bg-[#151515] overflow-hidden">
-      {/* ── 1. Top Header: Native Flint Rounded Tabs & Session Controls ── */}
+      {/* ── 1. Top Header: Native Noether Rounded Tabs & Session Controls ── */}
       {hasConfiguredKey && (
         <div
           style={{
@@ -817,7 +817,7 @@ export const CopilotSidebarView: React.FC = () => {
               },
             ]);
           }}
-          className="h-[38px] flex items-end justify-between pr-2.5 select-none border-b border-[var(--flint-border-base,#292929)] shrink-0 relative z-20"
+          className="h-[38px] flex items-end justify-between pr-2.5 select-none border-b border-[var(--noether-border-base,#292929)] shrink-0 relative z-20"
         >
           {/* Split Tabs Row */}
           <div className="flex items-end gap-[2px] shrink min-w-0 flex-1 overflow-x-auto no-scrollbar relative -mb-[1px] pl-2 mr-1">
@@ -838,12 +838,12 @@ export const CopilotSidebarView: React.FC = () => {
                   title={sess.topic}
                   style={{
                     color: isActive
-                      ? 'var(--flint-text-primary)'
-                      : 'var(--flint-text-muted)',
+                      ? 'var(--noether-text-primary)'
+                      : 'var(--noether-text-muted)',
                   }}
                   className={`group relative flex items-center gap-1.5 px-2 text-xs cursor-pointer select-none flex-1 max-w-[140px] min-w-[36px] h-[34px] shrink ${
                     isActive
-                      ? 'rounded-t-[7px] bg-[#151515] border-t border-x border-b-0 border-[var(--flint-border-base,#292929)] font-normal z-20 shadow-xs'
+                      ? 'rounded-t-[7px] bg-[#151515] border-t border-x border-b-0 border-[var(--noether-border-base,#292929)] font-normal z-20 shadow-xs'
                       : 'bg-transparent font-normal border-0 hover:z-30'
                   }`}
                 >
@@ -878,7 +878,7 @@ export const CopilotSidebarView: React.FC = () => {
                         <path
                           d="M 0 8 A 8 8 0 0 0 8 0"
                           fill="none"
-                          stroke="var(--flint-border-base, #292929)"
+                          stroke="var(--noether-border-base, #292929)"
                           strokeWidth="1"
                           vectorEffect="non-scaling-stroke"
                         />
@@ -902,7 +902,7 @@ export const CopilotSidebarView: React.FC = () => {
                         <path
                           d="M 0 0 A 8 8 0 0 0 8 8"
                           fill="none"
-                          stroke="var(--flint-border-base, #292929)"
+                          stroke="var(--noether-border-base, #292929)"
                           strokeWidth="1"
                           vectorEffect="non-scaling-stroke"
                         />
@@ -922,8 +922,8 @@ export const CopilotSidebarView: React.FC = () => {
                     <div
                       className={`w-3.5 h-3.5 flex items-center justify-center shrink-0 ${
                         isActive
-                          ? 'text-[var(--flint-text-primary)]'
-                          : 'text-[var(--flint-text-muted)] group-hover:text-[var(--flint-text-secondary)]'
+                          ? 'text-[var(--noether-text-primary)]'
+                          : 'text-[var(--noether-text-muted)] group-hover:text-[var(--noether-text-secondary)]'
                       }`}
                     >
                       <DynamicHugeIcon iconId={sess.icon || 'ChatIcon'} size={13} />
@@ -931,8 +931,8 @@ export const CopilotSidebarView: React.FC = () => {
                     <span
                       className={`truncate flex-1 min-w-0 text-[12px] ${
                         isActive
-                          ? 'text-[var(--flint-text-primary)]'
-                          : 'text-[var(--flint-text-muted)] group-hover:text-[var(--flint-text-secondary)]'
+                          ? 'text-[var(--noether-text-primary)]'
+                          : 'text-[var(--noether-text-muted)] group-hover:text-[var(--noether-text-secondary)]'
                       }`}
                     >
                       {sess.topic}
@@ -947,7 +947,7 @@ export const CopilotSidebarView: React.FC = () => {
                       deleteSession(sess.id);
                     }}
                     title="Close tab"
-                    className="absolute right-1 top-1/2 -translate-y-1/2 w-4 h-4 rounded flex items-center justify-center cursor-pointer opacity-0 group-hover:opacity-100 z-20 text-[var(--flint-text-muted)] hover:text-[var(--flint-text-primary)] hover:bg-[var(--flint-bg-card-hover)]"
+                    className="absolute right-1 top-1/2 -translate-y-1/2 w-4 h-4 rounded flex items-center justify-center cursor-pointer opacity-0 group-hover:opacity-100 z-20 text-[var(--noether-text-muted)] hover:text-[var(--noether-text-primary)] hover:bg-[var(--noether-bg-card-hover)]"
                   >
                     <Cancel01Icon size={12} />
                   </button>
@@ -962,7 +962,7 @@ export const CopilotSidebarView: React.FC = () => {
               onClick={createNewSession}
               disabled={!canCreateSession}
               title={canCreateSession ? 'New session' : undefined}
-              className="w-6 h-6 p-0 -translate-y-[8px] ml-2.5 shrink-0 text-[var(--flint-text-muted)] hover:text-[var(--flint-text-primary)]"
+              className="w-6 h-6 p-0 -translate-y-[8px] ml-2.5 shrink-0 text-[var(--noether-text-muted)] hover:text-[var(--noether-text-primary)]"
             >
               <PlusSignIcon size={13} />
             </Button>
@@ -976,7 +976,7 @@ export const CopilotSidebarView: React.FC = () => {
               onClick={clearMessages}
               disabled={messages.length === 0}
               title="Clear Conversation"
-              className="w-6 h-6 p-0 text-[var(--flint-text-muted)] hover:text-[var(--flint-text-primary)]"
+              className="w-6 h-6 p-0 text-[var(--noether-text-muted)] hover:text-[var(--noether-text-primary)]"
             >
               <Delete02Icon size={13} />
             </Button>
@@ -986,7 +986,7 @@ export const CopilotSidebarView: React.FC = () => {
               size="sm"
               onClick={handleOpenSettings}
               title="Copilot Settings"
-              className="w-6 h-6 p-0 text-[var(--flint-text-muted)] hover:text-[var(--flint-text-primary)]"
+              className="w-6 h-6 p-0 text-[var(--noether-text-muted)] hover:text-[var(--noether-text-primary)]"
             >
               <Settings02Icon size={13} />
             </Button>
@@ -999,24 +999,24 @@ export const CopilotSidebarView: React.FC = () => {
         {!hasConfiguredKey ? (
           /* ── BYOK Setup / Onboarding Card ── */
           <div className="space-y-3 select-none">
-            <div className="p-3.5 bg-[var(--flint-bg-card,#1e1e1e)] border border-[var(--flint-border-base,#2c2c2c)] rounded-xl space-y-3">
+            <div className="p-3.5 bg-[var(--noether-bg-card,#1e1e1e)] border border-[var(--noether-border-base,#2c2c2c)] rounded-xl space-y-3">
               <div>
                 <div className="flex items-center gap-1.5 mb-1">
-                  <div className="w-5 h-5 rounded flex items-center justify-center text-[var(--flint-accent,#ea580c)]">
+                  <div className="w-5 h-5 rounded flex items-center justify-center text-[var(--noether-accent,#ea580c)]">
                     <ArtificialIntelligence01Icon size={15} />
                   </div>
-                  <h3 className="text-xs font-semibold text-[var(--flint-text-primary,#ffffff)]">
+                  <h3 className="text-xs font-semibold text-[var(--noether-text-primary,#ffffff)]">
                     Welcome to Copilot
                   </h3>
                 </div>
-                <p className="text-[11px] text-[var(--flint-text-muted,#888888)] leading-relaxed">
-                  Bring your own API key to start using Copilot with direct access to your Flint workspace.
+                <p className="text-[11px] text-[var(--noether-text-muted,#888888)] leading-relaxed">
+                  Bring your own API key to start using Copilot with direct access to your Noether workspace.
                 </p>
               </div>
 
               {/* Provider Selection Tabs */}
               <div className="space-y-1.5">
-                <span className="text-[10px] font-medium uppercase tracking-wider text-[var(--flint-text-muted,#666666)]">
+                <span className="text-[10px] font-medium uppercase tracking-wider text-[var(--noether-text-muted,#666666)]">
                   1. Select Provider
                 </span>
                 <div className="grid grid-cols-3 gap-1">
@@ -1030,8 +1030,8 @@ export const CopilotSidebarView: React.FC = () => {
                           onClick={() => setProvider(p)}
                           className={`h-7 px-1.5 rounded-[5px] text-[11px] flex items-center justify-center gap-1.5 border cursor-pointer select-none ${
                             isSelected
-                              ? 'bg-[var(--flint-accent,#ea580c)] text-white border-[var(--flint-accent,#ea580c)] font-medium'
-                              : 'bg-[var(--flint-bg-input,#141414)] text-[var(--flint-text-muted,#888888)] border-[var(--flint-border-base,#282828)] hover:text-[var(--flint-text-primary,#ffffff)] hover:bg-[var(--flint-bg-card-hover,#242424)]'
+                              ? 'bg-[var(--noether-accent,#ea580c)] text-white border-[var(--noether-accent,#ea580c)] font-medium'
+                              : 'bg-[var(--noether-bg-input,#141414)] text-[var(--noether-text-muted,#888888)] border-[var(--noether-border-base,#282828)] hover:text-[var(--noether-text-primary,#ffffff)] hover:bg-[var(--noether-bg-card-hover,#242424)]'
                           }`}
                         >
                           {p === 'anthropic' && <ClaudeIcon size={12} />}
@@ -1052,23 +1052,23 @@ export const CopilotSidebarView: React.FC = () => {
                 <>
                   {/* Step 2: Get Key Link */}
                   <div className="space-y-1.5">
-                    <span className="text-[10px] font-medium uppercase tracking-wider text-[var(--flint-text-muted,#666666)]">
+                    <span className="text-[10px] font-medium uppercase tracking-wider text-[var(--noether-text-muted,#666666)]">
                       2. Get Your Key
                     </span>
                     <a
                       href={providerMeta.dashboardUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-between p-2 rounded-lg bg-[var(--flint-bg-input,#141414)] border border-[var(--flint-border-base,#282828)] hover:border-[var(--flint-border-strong,#3c3c3c)] text-xs text-[var(--flint-text-primary,#ffffff)]"
+                      className="flex items-center justify-between p-2 rounded-lg bg-[var(--noether-bg-input,#141414)] border border-[var(--noether-border-base,#282828)] hover:border-[var(--noether-border-strong,#3c3c3c)] text-xs text-[var(--noether-text-primary,#ffffff)]"
                     >
                       <span className="text-[11px] truncate">{providerMeta.guideTitle}</span>
-                      <ExternalLinkIcon size={12} className="text-[var(--flint-text-muted)] shrink-0" />
+                      <ExternalLinkIcon size={12} className="text-[var(--noether-text-muted)] shrink-0" />
                     </a>
                   </div>
 
                   {/* Step 3: Enter Key */}
                   <div className="space-y-1.5">
-                    <span className="text-[10px] font-medium uppercase tracking-wider text-[var(--flint-text-muted,#666666)]">
+                    <span className="text-[10px] font-medium uppercase tracking-wider text-[var(--noether-text-muted,#666666)]">
                       3. Paste API Key
                     </span>
                     <div className="relative flex items-center">
@@ -1083,7 +1083,7 @@ export const CopilotSidebarView: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
-                        className="absolute right-2 text-[var(--flint-text-muted)] hover:text-[var(--flint-text-primary)] cursor-pointer"
+                        className="absolute right-2 text-[var(--noether-text-muted)] hover:text-[var(--noether-text-primary)] cursor-pointer"
                         title={showPassword ? 'Hide Key' : 'Show Key'}
                       >
                         {showPassword ? <EyeOffIcon size={13} /> : <EyeIcon size={13} />}
@@ -1133,15 +1133,15 @@ export const CopilotSidebarView: React.FC = () => {
         ) : messages.length === 0 ? (
           /* ── Empty State ── */
           <div className="h-full flex flex-col items-center justify-center text-center py-8 space-y-4 select-none">
-            <div className="text-[var(--flint-accent,#ea580c)] flex items-center justify-center">
+            <div className="text-[var(--noether-accent,#ea580c)] flex items-center justify-center">
               <CopilotSidebarIcon size={24} />
             </div>
 
             <div className="space-y-1">
-              <h4 className="text-xs font-semibold text-[var(--flint-text-primary,#ffffff)]">
+              <h4 className="text-xs font-semibold text-[var(--noether-text-primary,#ffffff)]">
                 Copilot is ready
               </h4>
-              <p className="text-[11px] text-[var(--flint-text-muted,#777777)] max-w-[220px]">
+              <p className="text-[11px] text-[var(--noether-text-muted,#777777)] max-w-[220px]">
                 Ask anything about your notes, synthesize ideas, or execute workspace tools.
               </p>
             </div>
@@ -1156,7 +1156,7 @@ export const CopilotSidebarView: React.FC = () => {
                 // User Prompt: Lessened Rounding Card Bubble
                 return (
                   <div key={m.id} className="w-full">
-                    <div className="rounded-[8px] bg-[var(--flint-bg-card,#1c1c1c)] border border-[var(--flint-border-base,#2a2a2a)] p-3 text-[12px] leading-relaxed text-[var(--flint-text-primary,#ffffff)] whitespace-pre-wrap select-text">
+                    <div className="rounded-[8px] bg-[var(--noether-bg-card,#1c1c1c)] border border-[var(--noether-border-base,#2a2a2a)] p-3 text-[12px] leading-relaxed text-[var(--noether-text-primary,#ffffff)] whitespace-pre-wrap select-text">
                       {m.content}
                     </div>
                   </div>
@@ -1225,19 +1225,19 @@ export const CopilotSidebarView: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => readAndQueryTools.length > 0 && toggleSummaryExpanded(`${m.id}-tools`)}
-                        className={`w-full px-2.5 flex items-center justify-between text-left text-[11px] text-[var(--flint-text-muted,#777777)] bg-transparent border-0 p-0 m-0 outline-none appearance-none select-none ${
+                        className={`w-full px-2.5 flex items-center justify-between text-left text-[11px] text-[var(--noether-text-muted,#777777)] bg-transparent border-0 p-0 m-0 outline-none appearance-none select-none ${
                           readAndQueryTools.length > 0 ? 'cursor-pointer' : 'cursor-default'
                         }`}
                       >
-                        <div className="flex items-center gap-1.5 text-[11px] text-[var(--flint-text-muted,#777777)] truncate">
+                        <div className="flex items-center gap-1.5 text-[11px] text-[var(--noether-text-muted,#777777)] truncate">
                           <span className="w-2.5 h-2.5 flex items-center justify-center shrink-0">
-                            <ReadActivityIcon size={12} className="text-[var(--flint-text-muted,#777777)] opacity-70 shrink-0" />
+                            <ReadActivityIcon size={12} className="text-[var(--noether-text-muted,#777777)] opacity-70 shrink-0" />
                           </span>
                           <span className="truncate">{readSummaryText}</span>
                         </div>
 
                         {readAndQueryTools.length > 0 && (
-                          <div className="shrink-0 ml-2 text-[var(--flint-text-muted,#777777)] flex items-center">
+                          <div className="shrink-0 ml-2 text-[var(--noether-text-muted,#777777)] flex items-center">
                             {isToolsExpanded ? <ChevronDownIcon size={11} /> : <ChevronRightIcon size={11} />}
                           </div>
                         )}
@@ -1246,17 +1246,17 @@ export const CopilotSidebarView: React.FC = () => {
                       {/* Human-Friendly Non-Technical Activity Steps */}
                       {isToolsExpanded && readAndQueryTools.length > 0 && (
                         <div className="relative pl-[26px] pr-2.5 pt-0.5 -mt-0.5 space-y-1 select-none">
-                          <div className="absolute left-[14.5px] top-[7px] bottom-1 w-[1px] bg-[var(--flint-border-subtle,#262626)]" />
+                          <div className="absolute left-[14.5px] top-[7px] bottom-1 w-[1px] bg-[var(--noether-border-subtle,#262626)]" />
                           {readAndQueryTools.map((tc) => {
                             const step = formatToolExecutionFriendly(tc);
                             const StepIcon = step.icon;
                             return (
                               <div
                                 key={tc.id}
-                                className="flex items-center gap-1.5 text-[11px] text-[var(--flint-text-muted,#777777)]"
+                                className="flex items-center gap-1.5 text-[11px] text-[var(--noether-text-muted,#777777)]"
                               >
                                 <span className="w-2.5 h-2.5 flex items-center justify-center shrink-0">
-                                  <StepIcon size={11} className="text-[var(--flint-text-muted,#777777)] opacity-70 shrink-0" />
+                                  <StepIcon size={11} className="text-[var(--noether-text-muted,#777777)] opacity-70 shrink-0" />
                                 </span>
                                 <span className="truncate">
                                   {step.label}
@@ -1276,19 +1276,19 @@ export const CopilotSidebarView: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => editTools.length > 0 && toggleSummaryExpanded(`${m.id}-edits`)}
-                        className={`w-full px-2.5 flex items-center justify-between text-left text-[11px] text-[var(--flint-text-muted,#777777)] bg-transparent border-0 p-0 m-0 outline-none appearance-none select-none ${
+                        className={`w-full px-2.5 flex items-center justify-between text-left text-[11px] text-[var(--noether-text-muted,#777777)] bg-transparent border-0 p-0 m-0 outline-none appearance-none select-none ${
                           editTools.length > 0 ? 'cursor-pointer' : 'cursor-default'
                         }`}
                       >
-                        <div className="flex items-center gap-1.5 text-[11px] text-[var(--flint-text-muted,#777777)] truncate">
+                        <div className="flex items-center gap-1.5 text-[11px] text-[var(--noether-text-muted,#777777)] truncate">
                           <span className="w-2.5 h-2.5 flex items-center justify-center shrink-0">
-                            <Edit02Icon size={12} className="text-[var(--flint-text-muted,#777777)] opacity-70 shrink-0" />
+                            <Edit02Icon size={12} className="text-[var(--noether-text-muted,#777777)] opacity-70 shrink-0" />
                           </span>
                           <span className="truncate">{editSummaryText}</span>
                         </div>
 
                         {editTools.length > 0 && (
-                          <div className="shrink-0 ml-2 text-[var(--flint-text-muted,#777777)] flex items-center">
+                          <div className="shrink-0 ml-2 text-[var(--noether-text-muted,#777777)] flex items-center">
                             {isEditsExpanded ? <ChevronDownIcon size={11} /> : <ChevronRightIcon size={11} />}
                           </div>
                         )}
@@ -1297,17 +1297,17 @@ export const CopilotSidebarView: React.FC = () => {
                       {/* Human-Friendly Non-Technical Edit Steps */}
                       {isEditsExpanded && editTools.length > 0 && (
                         <div className="relative pl-[26px] pr-2.5 pt-0.5 -mt-0.5 space-y-1 select-none">
-                          <div className="absolute left-[14.5px] top-[7px] bottom-1 w-[1px] bg-[var(--flint-border-subtle,#262626)]" />
+                          <div className="absolute left-[14.5px] top-[7px] bottom-1 w-[1px] bg-[var(--noether-border-subtle,#262626)]" />
                           {editTools.map((tc) => {
                             const step = formatToolExecutionFriendly(tc);
                             const StepIcon = step.icon;
                             return (
                               <div
                                 key={tc.id}
-                                className="flex items-center gap-1.5 text-[11px] text-[var(--flint-text-muted,#777777)]"
+                                className="flex items-center gap-1.5 text-[11px] text-[var(--noether-text-muted,#777777)]"
                               >
                                 <span className="w-2.5 h-2.5 flex items-center justify-center shrink-0">
-                                  <StepIcon size={11} className="text-[var(--flint-text-muted,#777777)] opacity-70 shrink-0" />
+                                  <StepIcon size={11} className="text-[var(--noether-text-muted,#777777)] opacity-70 shrink-0" />
                                 </span>
                                 <span className="truncate">
                                   {step.label}
@@ -1322,20 +1322,20 @@ export const CopilotSidebarView: React.FC = () => {
                   )}
 
                   {/* Assistant Prose Content with Wikilinks */}
-                  <div className="text-[12px] leading-relaxed text-[var(--flint-text-primary,#dedede)] px-2.5">
+                  <div className="text-[12px] leading-relaxed text-[var(--noether-text-primary,#dedede)] px-2.5">
                     <CopilotMarkdown content={m.content} onWikilinkClick={handleWikilinkClick} />
                   </div>
 
                   {/* Message Footer: Duration & Right-Aligned Action Icons */}
-                  <div className="flex items-center justify-between pt-1 px-2.5 select-none text-[11px] text-[var(--flint-text-muted,#777777)]">
-                    <div className="flex items-center gap-1.5 text-[11px] text-[var(--flint-text-muted,#777777)]">
+                  <div className="flex items-center justify-between pt-1 px-2.5 select-none text-[11px] text-[var(--noether-text-muted,#777777)]">
+                    <div className="flex items-center gap-1.5 text-[11px] text-[var(--noether-text-muted,#777777)]">
                       {m.elapsedTimeMs ? (
                         <>
                           <CopilotMatrixLoader isWorking={false} />
                           <span>Worked for {formatDuration(m.elapsedTimeMs)}</span>
                         </>
                       ) : m.isStreaming ? (
-                        <span className="flex items-center gap-1.5 text-[var(--flint-text-muted,#777777)]">
+                        <span className="flex items-center gap-1.5 text-[var(--noether-text-muted,#777777)]">
                           <CopilotMatrixLoader isWorking={true} />
                           <span>Working...</span>
                         </span>
@@ -1361,8 +1361,8 @@ export const CopilotSidebarView: React.FC = () => {
                                   aria-label="Previous version"
                                   className={`w-6 h-6 rounded flex items-center justify-center ${
                                     isFirstVariant
-                                      ? 'text-[var(--flint-text-muted,#777777)]/30 cursor-not-allowed'
-                                      : 'text-[var(--flint-text-muted,#777777)] hover:text-[var(--flint-text-primary,#ffffff)] hover:bg-[var(--flint-bg-card-hover,#262626)] cursor-pointer'
+                                      ? 'text-[var(--noether-text-muted,#777777)]/30 cursor-not-allowed'
+                                      : 'text-[var(--noether-text-muted,#777777)] hover:text-[var(--noether-text-primary,#ffffff)] hover:bg-[var(--noether-bg-card-hover,#262626)] cursor-pointer'
                                   }`}
                                 >
                                   <ArrowLeft01Icon size={12} />
@@ -1370,7 +1370,7 @@ export const CopilotSidebarView: React.FC = () => {
                               </Tooltip>
 
                               {/* Subtle Version Counter (e.g. 1/2) */}
-                              <span className="text-[10px] tabular-nums text-[var(--flint-text-muted,#777777)] select-none px-0.5">
+                              <span className="text-[10px] tabular-nums text-[var(--noether-text-muted,#777777)] select-none px-0.5">
                                 {currentIndex + 1}/{totalVariants}
                               </span>
 
@@ -1387,7 +1387,7 @@ export const CopilotSidebarView: React.FC = () => {
                                     }
                                   }}
                                   aria-label={isLatestVariant ? 'Regenerate response' : 'Next version'}
-                                  className="w-6 h-6 rounded flex items-center justify-center text-[var(--flint-text-muted,#777777)] hover:text-[var(--flint-text-primary,#ffffff)] hover:bg-[var(--flint-bg-card-hover,#262626)] cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
+                                  className="w-6 h-6 rounded flex items-center justify-center text-[var(--noether-text-muted,#777777)] hover:text-[var(--noether-text-primary,#ffffff)] hover:bg-[var(--noether-bg-card-hover,#262626)] cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
                                 >
                                   <ArrowRight01Icon size={12} />
                                 </button>
@@ -1399,7 +1399,7 @@ export const CopilotSidebarView: React.FC = () => {
                                   type="button"
                                   onClick={() => handleCopyMessage(m.content)}
                                   aria-label="Copy message"
-                                  className="w-6 h-6 rounded flex items-center justify-center text-[var(--flint-text-muted,#777777)] hover:text-[var(--flint-text-primary,#ffffff)] hover:bg-[var(--flint-bg-card-hover,#262626)] cursor-pointer"
+                                  className="w-6 h-6 rounded flex items-center justify-center text-[var(--noether-text-muted,#777777)] hover:text-[var(--noether-text-primary,#ffffff)] hover:bg-[var(--noether-bg-card-hover,#262626)] cursor-pointer"
                                 >
                                   <Copy01Icon size={12} />
                                 </button>
@@ -1424,16 +1424,16 @@ export const CopilotSidebarView: React.FC = () => {
           <div className="p-2 rounded-[8px] border border-[#222222] bg-[#151515] shadow-lg shadow-black/40 space-y-1.5">
             {/* Context Pill Indicator if active note attached */}
             {includeActiveNoteContext && activeDoc?.title && (
-              <div className="flex items-center justify-between px-2 py-0.5 rounded-[4px] bg-[#1a1a1a] border border-[#222222] text-[10.5px] text-[var(--flint-text-muted,#888888)]">
+              <div className="flex items-center justify-between px-2 py-0.5 rounded-[4px] bg-[#1a1a1a] border border-[#222222] text-[10.5px] text-[var(--noether-text-muted,#888888)]">
                 <div className="flex items-center gap-1.5 truncate">
-                  <File01Icon size={11} className="text-[var(--flint-accent,#ea580c)] shrink-0" />
+                  <File01Icon size={11} className="text-[var(--noether-accent,#ea580c)] shrink-0" />
                   <span className="truncate">Active note: {activeDoc.title}</span>
                 </div>
                 <button
                   type="button"
                   onClick={() => setIncludeActiveNoteContext(false)}
                   title="Remove note context"
-                  className="hover:text-[var(--flint-text-primary,#ffffff)] text-[var(--flint-text-muted,#666666)] cursor-pointer px-1 font-mono"
+                  className="hover:text-[var(--noether-text-primary,#ffffff)] text-[var(--noether-text-muted,#666666)] cursor-pointer px-1 font-mono"
                 >
                   ×
                 </button>
@@ -1448,7 +1448,7 @@ export const CopilotSidebarView: React.FC = () => {
               onChange={handleInputChange}
               onKeyDown={handleKeyDown}
               placeholder="Ask anything, @ to add context, / for commands"
-              className="w-full bg-transparent border-none outline-none text-xs text-[var(--flint-text-primary,#ffffff)] placeholder:text-[var(--flint-text-muted,#666666)] resize-none min-h-[22px] max-h-32 px-1 py-0.5 leading-normal custom-scrollbar block"
+              className="w-full bg-transparent border-none outline-none text-xs text-[var(--noether-text-primary,#ffffff)] placeholder:text-[var(--noether-text-muted,#666666)] resize-none min-h-[22px] max-h-32 px-1 py-0.5 leading-normal custom-scrollbar block"
             />
 
             {/* Bottom Inner Controls Bar (No Divider) */}
@@ -1462,8 +1462,8 @@ export const CopilotSidebarView: React.FC = () => {
                     onClick={() => setIncludeActiveNoteContext(!includeActiveNoteContext)}
                     className={`w-6 h-6 flex items-center justify-center cursor-pointer ${
                       includeActiveNoteContext
-                        ? 'rounded bg-[var(--flint-accent,#ea580c)]/15 text-[var(--flint-accent,#ea580c)] border border-[var(--flint-accent,#ea580c)]/30'
-                        : 'text-[var(--flint-text-muted,#777777)] hover:text-[var(--flint-text-primary,#ffffff)]'
+                        ? 'rounded bg-[var(--noether-accent,#ea580c)]/15 text-[var(--noether-accent,#ea580c)] border border-[var(--noether-accent,#ea580c)]/30'
+                        : 'text-[var(--noether-text-muted,#777777)] hover:text-[var(--noether-text-primary,#ffffff)]'
                     }`}
                   >
                     <PlusSignIcon size={13} />
@@ -1477,7 +1477,7 @@ export const CopilotSidebarView: React.FC = () => {
                       ref={modelTriggerRef}
                       type="button"
                       onClick={handleToggleModelMenu}
-                      className="h-6 flex items-center gap-1 text-[11px] font-medium text-[var(--flint-text-muted,#777777)] hover:text-[var(--flint-text-primary,#ffffff)] cursor-pointer select-none"
+                      className="h-6 flex items-center gap-1 text-[11px] font-medium text-[var(--noether-text-muted,#777777)] hover:text-[var(--noether-text-primary,#ffffff)] cursor-pointer select-none"
                     >
                       <span className="truncate max-w-[140px]">{currentModelLabel}</span>
                       <ChevronDownIcon size={10} className="shrink-0 opacity-70" />
@@ -1493,7 +1493,7 @@ export const CopilotSidebarView: React.FC = () => {
                             left: `${modelMenuCoords.left}px`,
                             zIndex: 99999,
                           }}
-                          className="w-max min-w-[180px] max-w-[280px] max-h-60 overflow-y-auto bg-[var(--flint-bg-card,#1a1a1a)] border border-[var(--flint-border-base,#282828)] rounded-[6px] p-1 shadow-lg shadow-black/60 select-none custom-scrollbar"
+                          className="w-max min-w-[180px] max-w-[280px] max-h-60 overflow-y-auto bg-[var(--noether-bg-card,#1a1a1a)] border border-[var(--noether-border-base,#282828)] rounded-[6px] p-1 shadow-lg shadow-black/60 select-none custom-scrollbar"
                         >
                           {modelOptions.map((opt) => {
                             const isSelected = opt.value === currentModel;
@@ -1507,12 +1507,12 @@ export const CopilotSidebarView: React.FC = () => {
                                 }}
                                 className={`w-full px-2 py-1.5 rounded-[4px] text-left text-[11px] flex items-center justify-between gap-2 cursor-pointer ${
                                   isSelected
-                                    ? 'bg-[var(--flint-accent,#ea580c)]/15 text-[var(--flint-accent,#ea580c)] font-medium'
-                                    : 'text-[var(--flint-text-secondary,#bbbbbb)] hover:text-[var(--flint-text-primary,#ffffff)] hover:bg-[var(--flint-bg-card-hover,#242424)]'
+                                    ? 'bg-[var(--noether-accent,#ea580c)]/15 text-[var(--noether-accent,#ea580c)] font-medium'
+                                    : 'text-[var(--noether-text-secondary,#bbbbbb)] hover:text-[var(--noether-text-primary,#ffffff)] hover:bg-[var(--noether-bg-card-hover,#242424)]'
                                 }`}
                               >
                                 <span className="truncate">{opt.label}</span>
-                                {isSelected && <CheckIcon size={12} className="text-[var(--flint-accent,#ea580c)] shrink-0" />}
+                                {isSelected && <CheckIcon size={12} className="text-[var(--noether-accent,#ea580c)] shrink-0" />}
                               </button>
                             );
                           })}
@@ -1522,7 +1522,7 @@ export const CopilotSidebarView: React.FC = () => {
                   </>
                 ) : (
                   <Tooltip content="You have to put in an API key first to check for available models">
-                    <span className="h-6 flex items-center text-[11px] font-medium text-[var(--flint-text-muted,#777777)] truncate cursor-not-allowed">
+                    <span className="h-6 flex items-center text-[11px] font-medium text-[var(--noether-text-muted,#777777)] truncate cursor-not-allowed">
                       No model selected
                     </span>
                   </Tooltip>
@@ -1536,22 +1536,22 @@ export const CopilotSidebarView: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setToolMode(toolMode === 'auto' ? 'chat_only' : 'auto')}
-                    className="h-6 flex items-center gap-1 text-[11px] font-medium text-[var(--flint-text-muted,#888888)] hover:text-[var(--flint-text-primary,#ffffff)] cursor-pointer select-none"
+                    className="h-6 flex items-center gap-1 text-[11px] font-medium text-[var(--noether-text-muted,#888888)] hover:text-[var(--noether-text-primary,#ffffff)] cursor-pointer select-none"
                   >
-                    <span className={toolMode === 'auto' ? 'text-[var(--flint-accent,#ea580c)]' : ''}>
+                    <span className={toolMode === 'auto' ? 'text-[var(--noether-accent,#ea580c)]' : ''}>
                       {toolMode === 'auto' ? 'Auto' : 'Chat'}
                     </span>
                     <ChevronDownIcon size={10} className="shrink-0 opacity-70" />
                   </button>
                 </Tooltip>
 
-                {/* Square Send / Stop Button with native flint-btn styling */}
+                {/* Square Send / Stop Button with native noether-btn styling */}
                 {isGenerating ? (
                   <button
                     type="button"
                     onClick={stopGeneration}
                     title="Stop Generating"
-                    className="flint-btn flint-btn-danger w-7 h-7 !p-0 !rounded-[5px] flex items-center justify-center cursor-pointer"
+                    className="noether-btn noether-btn-danger w-7 h-7 !p-0 !rounded-[5px] flex items-center justify-center cursor-pointer"
                   >
                     <SquareIcon size={11} />
                   </button>
@@ -1561,7 +1561,7 @@ export const CopilotSidebarView: React.FC = () => {
                     onClick={() => handleSendMessage()}
                     disabled={!inputVal.trim()}
                     title="Send Message (Enter)"
-                    className="flint-btn w-7 h-7 !p-0 !rounded-[5px] flex items-center justify-center text-[var(--flint-text-secondary,#dddddd)] hover:text-[var(--flint-text-primary,#ffffff)]"
+                    className="noether-btn w-7 h-7 !p-0 !rounded-[5px] flex items-center justify-center text-[var(--noether-text-secondary,#dddddd)] hover:text-[var(--noether-text-primary,#ffffff)]"
                   >
                     <ArrowUp01Icon size={13} />
                   </button>

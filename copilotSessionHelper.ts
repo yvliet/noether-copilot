@@ -1,7 +1,7 @@
 /**
  * @module CopilotSessionHelper
  * @description
- * Background icon discovery and categorization helper for Copilot for Flint sessions.
+ * Background icon discovery and categorization helper for Copilot for Noether sessions.
  * On first message in a session, analyzes the user prompt using heuristic rule evaluation
  * and queries the active provider model in the background to pick a representative HugeIcon.
  * Uses dynamic icon loading via @hugeicons/core-free-icons/loader to resolve icons on demand.

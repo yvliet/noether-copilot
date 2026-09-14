@@ -1,11 +1,11 @@
 /**
  * @module CopilotExtension
  * @description
- * Built-in community extension for Copilot For Flint.
- * Registers into Flint's right sidebar tabs and settings, providing:
+ * Built-in community extension for Copilot For noether.
+ * Registers into noether's right sidebar tabs and settings, providing:
  * - Dynamic Hugeicon model branding (switching between ArtificialIntelligence01Icon, Claude, ChatGPT, etc.)
  * - Zero-friction Bring-Your-Own-Key (BYOK) setup for OpenAI, Anthropic, Gemini, DeepSeek, and OpenRouter
- * - Direct autonomous workspace access to Flint's native Model Context Protocol (MCP) tools
+ * - Direct autonomous workspace access to noether's native Model Context Protocol (MCP) tools
  * - Context-aware note analysis, summarization, and action item extraction
  * - MCP tools: copilot_chat, copilot_get_status
  *
@@ -16,7 +16,7 @@
 import React from 'react';
 import { Extension } from '@/core/extensions/Extension';
 import { ExtensionManifest, McpToolResult } from '@/core/extensions/types';
-import { FlintApp } from '@/core/app/FlintApp';
+import { NoetherApp } from '@/core/app/NoetherApp';
 import { CopilotSidebarIcon } from './copilotIcons';
 import { CopilotSidebarView } from './CopilotSidebarView';
 import { CopilotSettingsTab } from './CopilotSettingsTab';
@@ -35,10 +35,10 @@ import {
 } from '@/components/common/Icons';
 
 export const COPILOT_MANIFEST: ExtensionManifest = {
-  id: 'flint-copilot',
-  name: 'Copilot For Flint',
+  id: 'noether-copilot',
+  name: 'Copilot',
   version: '1.0.0',
-  description: 'Fast, intelligent AI copilot assistant with BYOK multi-provider support and direct access to Flint workspace MCP tools.',
+  description: 'Fast, intelligent AI copilot assistant with BYOK multi-provider support and direct access to noether workspace MCP tools.',
   author: 'Yuliet Li',
   isCore: false,
   tags: ['ai', 'copilot', 'assistant', 'mcp', 'chat', 'byok', 'workspace'],
@@ -46,7 +46,7 @@ export const COPILOT_MANIFEST: ExtensionManifest = {
 };
 
 export class CopilotExtension extends Extension {
-  constructor(app: FlintApp, manifest: ExtensionManifest = COPILOT_MANIFEST) {
+  constructor(app: NoetherApp, manifest: ExtensionManifest = COPILOT_MANIFEST) {
     super(app, manifest);
   }
 
@@ -76,7 +76,7 @@ export class CopilotExtension extends Extension {
       hotkey: 'Ctrl+J',
       allowInInput: true,
       action: (app) => {
-        const ed = app.editor.getActiveEditor() || (window as any).__flintEditor;
+        const ed = app.editor.getActiveEditor() || (window as any).__noetherEditor;
         let selectedText = '';
         if (ed && ed.state) {
           const { from, to, empty } = ed.state.selection;
@@ -131,7 +131,7 @@ export class CopilotExtension extends Extension {
       id: 'copilot:polish-writing',
       title: 'Copilot: Polish Writing & Clarity',
       action: (app) => {
-        const ed = app.editor.getActiveEditor() || (window as any).__flintEditor;
+        const ed = app.editor.getActiveEditor() || (window as any).__noetherEditor;
         let selectedText = '';
         if (ed && ed.state) {
           const { from, to, empty } = ed.state.selection;
@@ -698,7 +698,7 @@ export class CopilotExtension extends Extension {
     // ── Tool: copilot_chat ──
     this.registerTool({
       name: 'copilot_chat',
-      description: 'Query Copilot for Flint programmatically with prompt and receive an AI-synthesized answer.',
+      description: 'Query Copilot for noether programmatically with prompt and receive an AI-synthesized answer.',
       parameters: {
         type: 'object',
         properties: {
@@ -769,7 +769,7 @@ export class CopilotExtension extends Extension {
             {
               type: 'text',
               text: JSON.stringify({
-                extension: 'flint-copilot',
+                extension: 'noether-copilot',
                 author: 'Yuliet Li',
                 provider: provider || 'unconfigured',
                 providerName,

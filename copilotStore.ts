@@ -1,7 +1,7 @@
 /**
  * @module CopilotStore
  * @description
- * Reactive Zustand state manager for Copilot For Flint.
+ * Reactive Zustand state manager for Copilot for Noether.
  * Manages multi-provider BYOK configurations, persistent API keys, chat message history,
  * active model selection, MCP tool availability toggles, streaming lifecycle, and
  * dynamic live model discovery cache.
@@ -200,21 +200,21 @@ export interface CopilotSettingsState {
   restoreDefaults: () => void;
 }
 
-const SETTINGS_STORAGE_KEY = 'flint_copilot_settings_v1';
-const HISTORY_STORAGE_KEY = 'flint_copilot_history_v1';
+const SETTINGS_STORAGE_KEY = 'noether_copilot_settings_v1';
+const HISTORY_STORAGE_KEY = 'noether_copilot_history_v1';
 
 export const LEGACY_DEFAULT_SYSTEM_PROMPT =
-  'You are Copilot for Flint, an intelligent, concise, and focused AI assistant embedded directly inside the user’s personal knowledge workspace. ' +
-  'You have full access to workspace tools through Flint’s native Model Context Protocol (MCP) to read, search, list, and modify notes, backlinks, and tags. ' +
+  'You are Copilot for Noether, an intelligent, concise, and focused AI assistant embedded directly inside the user’s personal knowledge workspace. ' +
+  'You have full access to workspace tools through Noether’s native Model Context Protocol (MCP) to read, search, list, and modify notes, backlinks, and tags. ' +
   'When referencing notes, provide clean markdown links or summaries. Keep responses sharp, accurate, and immediately useful. ' +
   'Never make up facts about the user’s vault: if you need to know what notes exist or what a note contains, call the appropriate workspace tool.';
 
 export const DEFAULT_SYSTEM_PROMPT =
-  'You are Copilot for Flint, an intelligent personal thinking partner and knowledge assistant embedded directly inside the user’s personal knowledge workspace.\n\n' +
+  'You are Copilot for Noether, an intelligent personal thinking partner and knowledge assistant embedded directly inside the user’s personal knowledge workspace.\n\n' +
   'Core Principles & Operating Directives:\n' +
-  '1. Vault & Note Mastery: You have direct access to Flint workspace tools via the Model Context Protocol (MCP) to search, read, create, update, and explore notes, links, and tags.\n' +
+  '1. Vault & Note Mastery: You have direct access to Noether workspace tools via the Model Context Protocol (MCP) to search, read, create, update, and explore notes, links, and tags.\n' +
   '2. Relational Intelligence: Think in graphs and networks. Actively illuminate connections between concepts, surface related notes, and cite notes using standard wikilinks: [[Note Title]].\n' +
-  '3. Token Economy & Speed: You are provided with a compact structural outline (metadata, heading hierarchy, and link neighbors) of the active note. If you require verbatim paragraph text or specific detailed sections, call the `flint_read_note` tool selectively rather than asking for full vault dumps.\n' +
+  '3. Token Economy & Speed: You are provided with a compact structural outline (metadata, heading hierarchy, and link neighbors) of the active note. If you require verbatim paragraph text or specific detailed sections, call the `noether_read_note` tool selectively rather than asking for full vault dumps.\n' +
   '4. Grounded Truth: Never hallucinate facts about the user’s vault. If you need to know what notes exist or what a note contains, call the appropriate workspace tool.\n' +
   '5. Style: Clear, punchy, intellectually rigorous, and formatted with clean markdown.';
 
@@ -273,8 +273,8 @@ function persistHistory(messages: CopilotMessage[]) {
   }
 }
 
-const SESSIONS_STORAGE_KEY = 'flint_copilot_sessions_v2';
-const ACTIVE_SESSION_STORAGE_KEY = 'flint_copilot_active_session_v1';
+const SESSIONS_STORAGE_KEY = 'noether_copilot_sessions_v2';
+const ACTIVE_SESSION_STORAGE_KEY = 'noether_copilot_active_session_v1';
 
 function loadPersistedSessions(
   fallbackHistory: CopilotMessage[],

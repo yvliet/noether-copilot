@@ -1,7 +1,7 @@
 /**
  * @module CopilotIcons
  * @description
- * Curated Hugeicons wrappers and dynamic model icon selector for Copilot For Flint.
+ * Curated Hugeicons wrappers and dynamic model icon selector for Copilot For Noether.
  * Dynamically switches between ArtificialIntelligence01Icon (default) and vendor brand icons
  * (ClaudeIcon, ChatGptIcon, GoogleGeminiIcon, DeepseekIcon, MistralIcon, MetaIcon) based on
  * the active LLM provider and model.

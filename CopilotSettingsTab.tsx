@@ -1,8 +1,8 @@
 /**
  * @module CopilotSettingsTab
  * @description
- * Configuration and BYOK credential management panel for Copilot For Flint.
- * Registered into Flint's Settings window via this.registerSettingTab().
+ * Configuration and BYOK credential management panel for Copilot For Noether.
+ * Registered into Noether's Settings window via this.registerSettingTab().
  *
  * Provides straightforward, zero-friction setup guides for all supported providers:
  * - Anthropic (Claude)
@@ -22,7 +22,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { useFlintApp } from '@/core/app/AppContext';
+import { useNoetherApp } from '@/core/app/AppContext';
 import { Tooltip } from '@/components/common/Tooltip';
 import {
   useCopilotStore,
@@ -58,7 +58,7 @@ import {
 } from '@/components/common/Icons';
 
 export const CopilotSettingsTab: React.FC = () => {
-  const app = useFlintApp();
+  const app = useNoetherApp();
 
   const provider = useCopilotStore((s) => s.provider);
   const models = useCopilotStore((s) => s.models);
@@ -248,7 +248,7 @@ export const CopilotSettingsTab: React.FC = () => {
                       disabled={isFetchingModels}
                       className="!p-1.5 h-7 w-7"
                     >
-                      <RotateCcwIcon size={13} className={isFetchingModels ? 'animate-spin text-[var(--flint-accent)]' : ''} />
+                      <RotateCcwIcon size={13} className={isFetchingModels ? 'animate-spin text-[var(--noether-accent)]' : ''} />
                     </Button>
                   </span>
                 </Tooltip>
@@ -329,7 +329,7 @@ export const CopilotSettingsTab: React.FC = () => {
                 type="button"
                 onClick={() => setShowKey(!showKey)}
                 disabled={!provider}
-                className="absolute right-2 text-[var(--flint-text-muted)] hover:text-[var(--flint-text-primary)] cursor-pointer disabled:opacity-40"
+                className="absolute right-2 text-[var(--noether-text-muted)] hover:text-[var(--noether-text-primary)] cursor-pointer disabled:opacity-40"
                 title={showKey ? 'Hide key' : 'Show key'}
               >
                 {showKey ? <EyeOffIcon size={13} /> : <EyeIcon size={13} />}
@@ -350,9 +350,9 @@ export const CopilotSettingsTab: React.FC = () => {
 
         {/* Quick Setup Guide Box */}
         {providerMeta ? (
-          <div className="p-3 bg-[var(--flint-bg-input,#141414)] border-t border-[var(--flint-border-subtle,#242424)] space-y-2">
+          <div className="p-3 bg-[var(--noether-bg-input,#141414)] border-t border-[var(--noether-border-subtle,#242424)] space-y-2">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-1.5 text-[var(--flint-text-primary,#ffffff)] font-medium text-xs">
+              <div className="flex items-center gap-1.5 text-[var(--noether-text-primary,#ffffff)] font-medium text-xs">
                 {provider === 'anthropic' && <ClaudeIcon size={14} />}
                 {provider === 'openai' && <ChatGptIcon size={14} />}
                 {provider === 'gemini' && <GoogleGeminiIcon size={14} />}
@@ -366,14 +366,14 @@ export const CopilotSettingsTab: React.FC = () => {
                 href={providerMeta.dashboardUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-[11px] text-[var(--flint-accent,#ea580c)] hover:underline"
+                className="inline-flex items-center gap-1 text-[11px] text-[var(--noether-accent,#ea580c)] hover:underline"
               >
                 <span>Open Provider Dashboard</span>
                 <ExternalLinkIcon size={11} />
               </a>
             </div>
 
-            <ol className="list-decimal list-inside text-[11px] text-[var(--flint-text-muted,#888888)] space-y-1">
+            <ol className="list-decimal list-inside text-[11px] text-[var(--noether-text-muted,#888888)] space-y-1">
               {providerMeta.guideSteps.map((step, idx) => (
                 <li key={idx}>{step}</li>
               ))}
@@ -394,7 +394,7 @@ export const CopilotSettingsTab: React.FC = () => {
             )}
           </div>
         ) : (
-          <div className="p-3 bg-[var(--flint-bg-input,#141414)] border-t border-[var(--flint-border-subtle,#242424)] text-[11px] text-[var(--flint-text-muted,#888888)] text-center">
+          <div className="p-3 bg-[var(--noether-bg-input,#141414)] border-t border-[var(--noether-border-subtle,#242424)] text-[11px] text-[var(--noether-text-muted,#888888)] text-center">
             Select a provider above to view credentials and guided onboarding instructions.
           </div>
         )}
@@ -428,8 +428,8 @@ export const CopilotSettingsTab: React.FC = () => {
         description="Control how Copilot reads notes and accesses your personal knowledge hearth."
       >
         <SettingItem
-          name="Enable Flint MCP Tools"
-          description="Allow Copilot to autonomously execute built-in tools (flint_search_notes, flint_read_note, backlinks, note creation) to answer questions about your hearth."
+          name="Enable Noether MCP Tools"
+          description="Allow Copilot to autonomously execute built-in tools (Noether_search_notes, Noether_read_note, backlinks, note creation) to answer questions about your hearth."
           controlClassName="justify-end"
         >
           <ToggleSwitch
@@ -487,7 +487,7 @@ export const CopilotSettingsTab: React.FC = () => {
             rows={4}
             value={systemPrompt}
             onChange={(e) => setSystemPrompt(e.target.value)}
-            className="w-full p-2.5 rounded-lg bg-[var(--flint-bg-input,#141414)] border border-[var(--flint-border-base,#282828)] focus:border-[var(--flint-accent,#ea580c)] text-xs text-[var(--flint-text-primary,#ffffff)] outline-none leading-relaxed resize-y custom-scrollbar"
+            className="w-full p-2.5 rounded-lg bg-[var(--noether-bg-input,#141414)] border border-[var(--noether-border-base,#282828)] focus:border-[var(--noether-accent,#ea580c)] text-xs text-[var(--noether-text-primary,#ffffff)] outline-none leading-relaxed resize-y custom-scrollbar"
           />
         </div>
       </SettingCard>
@@ -510,9 +510,9 @@ export const CopilotSettingsTab: React.FC = () => {
               step={0.05}
               value={temperature}
               onChange={(e) => setTemperature(parseFloat(e.target.value))}
-              className="w-36 accent-[var(--flint-accent,#ea580c)] cursor-pointer"
+              className="w-36 accent-[var(--noether-accent,#ea580c)] cursor-pointer"
             />
-            <span className="font-mono text-xs text-[var(--flint-text-muted)] w-8">
+            <span className="font-mono text-xs text-[var(--noether-text-muted)] w-8">
               {temperature.toFixed(2)}
             </span>
           </div>

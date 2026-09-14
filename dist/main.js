@@ -82827,7 +82827,7 @@ var init_ExtensionAppIcon = __esm({
             generateCompanionGradientColor(resolvedConfig.backgroundColor)
           ];
         } else {
-          const normalizedKey = (glyphName || name || "").toLowerCase().trim().replace(/^noether-/, "").replace(/^flint-/, "");
+          const normalizedKey = (glyphName || name || "").toLowerCase().trim().replace(/^noether-/, "");
           gradientStops = KNOWN_CORE_GRADIENTS[normalizedKey] || hashStringToGradient(normalizedKey || "extension");
         }
         backgroundStyle.backgroundImage = `linear-gradient(${dir}, ${gradientStops.join(", ")})`;
@@ -82885,7 +82885,7 @@ var init_ExtensionAppIcon = __esm({
             }
           );
         }
-        const normalizedKey = glyphName.toLowerCase().trim().replace(/^noether-/, "").replace(/^flint-/, "");
+        const normalizedKey = glyphName.toLowerCase().trim().replace(/^noether-/, "");
         const StaticComp = FAST_STATIC_ICON_MAP[normalizedKey] || FAST_STATIC_ICON_MAP[glyphName];
         if (StaticComp) {
           return /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(
@@ -84762,7 +84762,7 @@ var init_NoetherApp = __esm({
 });
 
 // ../../../../Downloads/noether/src/core/app/AppContext.tsx
-var import_react29, import_jsx_runtime25, AppContext, useNoetherApp, useFlintApp, useDocMenuActions, useExtensionList, useBreadcrumbProviders, useBreadcrumbDecorators, useDocumentTitleDecorators, usePortalSlots, useEditorPlugins, useViewportActions, useTabContextMenuActions, useOmniboxProviders;
+var import_react29, import_jsx_runtime25, AppContext, useNoetherApp, useDocMenuActions, useExtensionList, useBreadcrumbProviders, useBreadcrumbDecorators, useDocumentTitleDecorators, usePortalSlots, useEditorPlugins, useViewportActions, useTabContextMenuActions, useOmniboxProviders;
 var init_AppContext = __esm({
   "../../../../Downloads/noether/src/core/app/AppContext.tsx"() {
     "use strict";
@@ -84775,7 +84775,6 @@ var init_AppContext = __esm({
       if (ctx) return ctx;
       return appInstance;
     };
-    useFlintApp = useNoetherApp;
     useDocMenuActions = () => {
       const app = useNoetherApp();
       return (0, import_react29.useSyncExternalStore)(
@@ -84928,7 +84927,7 @@ var PROVIDER_CATALOG = {
     guideSteps: [
       "Navigate to console.anthropic.com/settings/keys.",
       "Log in or register your Anthropic account.",
-      'Click "Create Key", assign a name (e.g. "Flint Copilot"), and copy the generated secret key.'
+      'Click "Create Key", assign a name (e.g. "Noether Copilot"), and copy the generated secret key.'
     ]
   },
   openai: {
@@ -85240,10 +85239,10 @@ function computeActiveThread(messages, activeVariantMap = {}) {
   }
   return thread;
 }
-var SETTINGS_STORAGE_KEY = "flint_copilot_settings_v1";
-var HISTORY_STORAGE_KEY = "flint_copilot_history_v1";
-var LEGACY_DEFAULT_SYSTEM_PROMPT = "You are Copilot for Flint, an intelligent, concise, and focused AI assistant embedded directly inside the user\u2019s personal knowledge workspace. You have full access to workspace tools through Flint\u2019s native Model Context Protocol (MCP) to read, search, list, and modify notes, backlinks, and tags. When referencing notes, provide clean markdown links or summaries. Keep responses sharp, accurate, and immediately useful. Never make up facts about the user\u2019s vault: if you need to know what notes exist or what a note contains, call the appropriate workspace tool.";
-var DEFAULT_SYSTEM_PROMPT = "You are Copilot for Flint, an intelligent personal thinking partner and knowledge assistant embedded directly inside the user\u2019s personal knowledge workspace.\n\nCore Principles & Operating Directives:\n1. Vault & Note Mastery: You have direct access to Flint workspace tools via the Model Context Protocol (MCP) to search, read, create, update, and explore notes, links, and tags.\n2. Relational Intelligence: Think in graphs and networks. Actively illuminate connections between concepts, surface related notes, and cite notes using standard wikilinks: [[Note Title]].\n3. Token Economy & Speed: You are provided with a compact structural outline (metadata, heading hierarchy, and link neighbors) of the active note. If you require verbatim paragraph text or specific detailed sections, call the `flint_read_note` tool selectively rather than asking for full vault dumps.\n4. Grounded Truth: Never hallucinate facts about the user\u2019s vault. If you need to know what notes exist or what a note contains, call the appropriate workspace tool.\n5. Style: Clear, punchy, intellectually rigorous, and formatted with clean markdown.";
+var SETTINGS_STORAGE_KEY = "noether_copilot_settings_v1";
+var HISTORY_STORAGE_KEY = "noether_copilot_history_v1";
+var LEGACY_DEFAULT_SYSTEM_PROMPT = "You are Copilot for Noether, an intelligent, concise, and focused AI assistant embedded directly inside the user\u2019s personal knowledge workspace. You have full access to workspace tools through Noether\u2019s native Model Context Protocol (MCP) to read, search, list, and modify notes, backlinks, and tags. When referencing notes, provide clean markdown links or summaries. Keep responses sharp, accurate, and immediately useful. Never make up facts about the user\u2019s vault: if you need to know what notes exist or what a note contains, call the appropriate workspace tool.";
+var DEFAULT_SYSTEM_PROMPT = "You are Copilot for Noether, an intelligent personal thinking partner and knowledge assistant embedded directly inside the user\u2019s personal knowledge workspace.\n\nCore Principles & Operating Directives:\n1. Vault & Note Mastery: You have direct access to Noether workspace tools via the Model Context Protocol (MCP) to search, read, create, update, and explore notes, links, and tags.\n2. Relational Intelligence: Think in graphs and networks. Actively illuminate connections between concepts, surface related notes, and cite notes using standard wikilinks: [[Note Title]].\n3. Token Economy & Speed: You are provided with a compact structural outline (metadata, heading hierarchy, and link neighbors) of the active note. If you require verbatim paragraph text or specific detailed sections, call the `noether_read_note` tool selectively rather than asking for full vault dumps.\n4. Grounded Truth: Never hallucinate facts about the user\u2019s vault. If you need to know what notes exist or what a note contains, call the appropriate workspace tool.\n5. Style: Clear, punchy, intellectually rigorous, and formatted with clean markdown.";
 function loadPersistedSettings() {
   try {
     const raw = localStorage.getItem(SETTINGS_STORAGE_KEY);
@@ -85294,8 +85293,8 @@ function persistHistory(messages) {
     console.error("[CopilotStore] Failed to save chat history:", err);
   }
 }
-var SESSIONS_STORAGE_KEY = "flint_copilot_sessions_v2";
-var ACTIVE_SESSION_STORAGE_KEY = "flint_copilot_active_session_v1";
+var SESSIONS_STORAGE_KEY = "noether_copilot_sessions_v2";
+var ACTIVE_SESSION_STORAGE_KEY = "noether_copilot_active_session_v1";
 function loadPersistedSessions(fallbackHistory, fallbackTopic) {
   try {
     const raw = localStorage.getItem(SESSIONS_STORAGE_KEY);
@@ -86164,7 +86163,7 @@ ${truncated}
       lines.push(`Opening Excerpt: "${excerpt}${wordCount > 100 ? "..." : ""}"`);
     }
     lines.push("");
-    lines.push(`[Token-saving notice: You have the structural outline and link topology above. If you need verbatim text or specific paragraphs to fulfill the user request, call \`flint_read_note(documentId: "${doc3.id}")\`.]`);
+    lines.push(`[Token-saving notice: You have the structural outline and link topology above. If you need verbatim text or specific paragraphs to fulfill the user request, call \`noether_read_note(documentId: "${doc3.id}")\`.]`);
     return lines.join("\n");
   } catch (err) {
     console.warn("[CopilotClient] Failed to extract smart document context:", err);
@@ -86259,7 +86258,7 @@ ${docContext}
   if (hasGraphTools) {
     contextualSystemPrompt += "\n\n=== KNOWLEDGE GRAPH TOOLS ACTIVE ===\nGraph View is active. You have access to relational knowledge graph tools to explore connectivity without dumping raw note bodies:\n- `graph-view_get_local_graph`: Inspect incoming and outgoing links for any note (1 or 2 hops).\n- `graph-view_get_related_notes`: Discover related notes based on shared link topology and tags.\n- `graph-view_find_path`: Trace the shortest link chain connecting two notes.\n- `graph-view_get_hub_notes`: Surface central, highly interconnected concepts.\nAlways prioritize checking local graph connections or searching note titles before requesting whole note texts.\n=== END KNOWLEDGE GRAPH TOOLS ===";
   }
-  contextualSystemPrompt += "\n\nNOTE CITATION INSTRUCTION: When referencing any note by title or suggesting related notes, always format it as a clickable Flint wikilink: `[[Note Title]]`.";
+  contextualSystemPrompt += "\n\nNOTE CITATION INSTRUCTION: When referencing any note by title or suggesting related notes, always format it as a clickable Noether wikilink: `[[Note Title]]`.";
   const messageHistory = options.history || store.messages;
   const startTime = Date.now();
   let toolsExecutedCount = 0;
@@ -86362,8 +86361,8 @@ async function executeOpenAiCompatibleLoop(app, provider, apiKey, model, customE
     headers["Authorization"] = `Bearer ${apiKey}`;
   }
   if (provider === "openrouter") {
-    headers["HTTP-Referer"] = "https://flint.app";
-    headers["X-Title"] = "Copilot for Flint";
+    headers["HTTP-Referer"] = "https://Noether.app";
+    headers["X-Title"] = "Copilot for Noether";
   }
   const formattedMessages = [
     { role: "system", content: systemPrompt }
@@ -87316,7 +87315,7 @@ var CopilotMarkdown = import_react32.default.memo(({ content, onWikilinkClick })
           /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(
             ListTag,
             {
-              className: "my-2 space-y-1 text-[var(--flint-text-primary,#eeeeee)] text-xs leading-relaxed pl-4 list-disc",
+              className: "my-2 space-y-1 text-[var(--noether-text-primary,#eeeeee)] text-xs leading-relaxed pl-4 list-disc",
               children: listBuffer.map((item, idx) => /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(
                 "li",
                 {
@@ -87350,20 +87349,20 @@ var CopilotMarkdown = import_react32.default.memo(({ content, onWikilinkClick })
             /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)(
               "div",
               {
-                className: "my-2.5 rounded-[6px] border border-[var(--flint-border-base,#2f2f2f)] bg-[var(--flint-bg-input,#141414)] overflow-hidden",
+                className: "my-2.5 rounded-[6px] border border-[var(--noether-border-base,#2f2f2f)] bg-[var(--noether-bg-input,#141414)] overflow-hidden",
                 children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)("div", { className: "flex items-center justify-between px-3 py-1.5 border-b border-[var(--flint-border-subtle,#242424)] bg-[var(--flint-bg-card,#1c1c1c)] text-[11px] text-[var(--flint-text-muted,#888888)] select-none", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)("div", { className: "flex items-center justify-between px-3 py-1.5 border-b border-[var(--noether-border-subtle,#242424)] bg-[var(--noether-bg-card,#1c1c1c)] text-[11px] text-[var(--noether-text-muted,#888888)] select-none", children: [
                     /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("span", { className: "font-mono", children: codeLanguage || "text" }),
                     /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(
                       "button",
                       {
                         type: "button",
                         onClick: () => handleCopyCode(currentCode, currentIndex),
-                        className: "inline-flex items-center gap-1 hover:text-[var(--flint-text-primary,#ffffff)] cursor-pointer select-none",
+                        className: "inline-flex items-center gap-1 hover:text-[var(--noether-text-primary,#ffffff)] cursor-pointer select-none",
                         title: "Copy code",
                         children: isCopied ? /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)(import_jsx_runtime27.Fragment, { children: [
-                          /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(CheckIcon, { size: 12, className: "text-[var(--flint-accent,#ea580c)]" }),
-                          /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("span", { className: "text-[10px] text-[var(--flint-accent,#ea580c)]", children: "Copied" })
+                          /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(CheckIcon, { size: 12, className: "text-[var(--noether-accent,#ea580c)]" }),
+                          /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("span", { className: "text-[10px] text-[var(--noether-accent,#ea580c)]", children: "Copied" })
                         ] }) : /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)(import_jsx_runtime27.Fragment, { children: [
                           /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(Copy01Icon, { size: 12 }),
                           /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("span", { className: "text-[10px]", children: "Copy" })
@@ -87371,7 +87370,7 @@ var CopilotMarkdown = import_react32.default.memo(({ content, onWikilinkClick })
                       }
                     )
                   ] }),
-                  /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("pre", { className: "p-3 text-[11px] font-mono leading-relaxed overflow-x-auto text-[var(--flint-text-primary,#f0f0f0)] select-text whitespace-pre", children: /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("code", { children: currentCode }) })
+                  /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("pre", { className: "p-3 text-[11px] font-mono leading-relaxed overflow-x-auto text-[var(--noether-text-primary,#f0f0f0)] select-text whitespace-pre", children: /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("code", { children: currentCode }) })
                 ]
               },
               `code-${i}`
@@ -87391,15 +87390,15 @@ var CopilotMarkdown = import_react32.default.memo(({ content, onWikilinkClick })
         const text2 = headingMatch[2];
         if (level === 1) {
           nodes.push(
-            /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("h2", { className: "text-sm font-bold text-[var(--flint-text-primary,#ffffff)] mt-3 mb-1.5", children: /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("span", { dangerouslySetInnerHTML: { __html: renderInlineTokens(text2) } }) }, `h1-${i}`)
+            /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("h2", { className: "text-sm font-bold text-[var(--noether-text-primary,#ffffff)] mt-3 mb-1.5", children: /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("span", { dangerouslySetInnerHTML: { __html: renderInlineTokens(text2) } }) }, `h1-${i}`)
           );
         } else if (level === 2) {
           nodes.push(
-            /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("h3", { className: "text-xs font-semibold text-[var(--flint-text-primary,#ffffff)] mt-2.5 mb-1", children: /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("span", { dangerouslySetInnerHTML: { __html: renderInlineTokens(text2) } }) }, `h2-${i}`)
+            /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("h3", { className: "text-xs font-semibold text-[var(--noether-text-primary,#ffffff)] mt-2.5 mb-1", children: /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("span", { dangerouslySetInnerHTML: { __html: renderInlineTokens(text2) } }) }, `h2-${i}`)
           );
         } else {
           nodes.push(
-            /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("h4", { className: "text-xs font-medium text-[var(--flint-text-primary,#e0e0e0)] mt-2 mb-0.5", children: /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("span", { dangerouslySetInnerHTML: { __html: renderInlineTokens(text2) } }) }, `h3-${i}`)
+            /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("h4", { className: "text-xs font-medium text-[var(--noether-text-primary,#e0e0e0)] mt-2 mb-0.5", children: /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("span", { dangerouslySetInnerHTML: { __html: renderInlineTokens(text2) } }) }, `h3-${i}`)
           );
         }
         continue;
@@ -87411,7 +87410,7 @@ var CopilotMarkdown = import_react32.default.memo(({ content, onWikilinkClick })
           /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(
             "blockquote",
             {
-              className: "border-l-2 border-[var(--flint-accent,#ea580c)] pl-2.5 my-1.5 text-xs italic text-[var(--flint-text-muted,#aaaaaa)]",
+              className: "border-l-2 border-[var(--noether-accent,#ea580c)] pl-2.5 my-1.5 text-xs italic text-[var(--noether-text-muted,#aaaaaa)]",
               dangerouslySetInnerHTML: { __html: renderInlineTokens(quoteText) }
             },
             `quote-${i}`
@@ -87441,7 +87440,7 @@ var CopilotMarkdown = import_react32.default.memo(({ content, onWikilinkClick })
           /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(
             "p",
             {
-              className: "my-1.5 text-xs leading-relaxed text-[var(--flint-text-primary,#dedede)]",
+              className: "my-1.5 text-xs leading-relaxed text-[var(--noether-text-primary,#dedede)]",
               dangerouslySetInnerHTML: { __html: renderInlineTokens(line) }
             },
             `p-${i}`
@@ -87461,10 +87460,10 @@ function renderInlineTokens(raw) {
   if (!raw) return "";
   return raw.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(
     /\[\[(.*?)\]\]/g,
-    '<span data-wikilink="$1" class="inline-flex items-center px-1.5 py-0.5 mx-0.5 rounded text-[11px] font-medium bg-[var(--flint-accent,#ea580c)]/10 text-[var(--flint-accent,#ea580c)] border border-[var(--flint-accent,#ea580c)]/25 hover:bg-[var(--flint-accent,#ea580c)]/20 cursor-pointer select-none align-baseline"><span>[[$1]]</span></span>'
-  ).replace(/`([^`]+)`/g, '<code class="bg-[var(--flint-bg-card,#252525)] border border-[var(--flint-border-base,#333333)] text-[var(--flint-accent,#ea580c)] font-mono text-[11px] px-1 py-0.5 rounded-[4px]">$1</code>').replace(/\*\*([^*]+)\*\*/g, '<strong class="font-semibold text-[var(--flint-text-primary,#ffffff)]">$1</strong>').replace(/\*([^*]+)\*/g, '<em class="italic text-[var(--flint-text-muted,#cccccc)]">$1</em>').replace(
+    '<span data-wikilink="$1" class="inline-flex items-center px-1.5 py-0.5 mx-0.5 rounded text-[11px] font-medium bg-[var(--noether-accent,#ea580c)]/10 text-[var(--noether-accent,#ea580c)] border border-[var(--noether-accent,#ea580c)]/25 hover:bg-[var(--noether-accent,#ea580c)]/20 cursor-pointer select-none align-baseline"><span>[[$1]]</span></span>'
+  ).replace(/`([^`]+)`/g, '<code class="bg-[var(--noether-bg-card,#252525)] border border-[var(--noether-border-base,#333333)] text-[var(--noether-accent,#ea580c)] font-mono text-[11px] px-1 py-0.5 rounded-[4px]">$1</code>').replace(/\*\*([^*]+)\*\*/g, '<strong class="font-semibold text-[var(--noether-text-primary,#ffffff)]">$1</strong>').replace(/\*([^*]+)\*/g, '<em class="italic text-[var(--noether-text-muted,#cccccc)]">$1</em>').replace(
     /\[([^\]]+)\]\(([^)]+)\)/g,
-    '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-[var(--flint-accent,#ea580c)] hover:underline inline-flex items-center gap-0.5">$1</a>'
+    '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-[var(--noether-accent,#ea580c)] hover:underline inline-flex items-center gap-0.5">$1</a>'
   );
 }
 
@@ -87498,7 +87497,7 @@ var CopilotMatrixLoader = import_react33.default.memo(({ isWorking = false }) =>
     /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(
       "span",
       {
-        className: "inline-grid grid-cols-3 grid-rows-3 gap-[2px] w-2.5 h-2.5 shrink-0 select-none text-[var(--flint-text-muted,#777777)]",
+        className: "inline-grid grid-cols-3 grid-rows-3 gap-[2px] w-2.5 h-2.5 shrink-0 select-none text-[var(--noether-text-muted,#777777)]",
         "aria-hidden": "true",
         children: MATRIX_DELAYS.map((delay, i) => /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(
           "span",
@@ -87597,7 +87596,7 @@ function formatToolExecutionFriendly(tc2) {
     label = "Browsed hearth notes";
     icon = BookOpen01Icon;
   } else {
-    const cleanName = tc2.name.replace(/^(flint_|core_|ext_)/, "").replace(/[_-]/g, " ").trim();
+    const cleanName = tc2.name.replace(/^(Noether_|core_|ext_)/, "").replace(/[_-]/g, " ").trim();
     const formatted = cleanName.charAt(0).toUpperCase() + cleanName.slice(1);
     label = target ? `${formatted} "${target}"` : query ? `${formatted} for "${query}"` : formatted;
     icon = LayersIcon;
@@ -87609,7 +87608,7 @@ function formatToolExecutionFriendly(tc2) {
   };
 }
 var CopilotSidebarView = () => {
-  const app = useFlintApp();
+  const app = useNoetherApp();
   const provider = useCopilotStore((s) => s.provider);
   const models = useCopilotStore((s) => s.models);
   const apiKeys = useCopilotStore((s) => s.apiKeys);
@@ -87851,7 +87850,7 @@ ${content}` : content;
     try {
       const firstLine = content.split("\n")[0].replace(/^[#\s*`-]+/, "").slice(0, 40).trim();
       const title = firstLine || `Copilot Note ${(/* @__PURE__ */ new Date()).toLocaleDateString()}`;
-      const res = await app.tools.executeTool("flint_create_note", {
+      const res = await app.tools.executeTool("Noether_create_note", {
         title,
         content
       });
@@ -87966,7 +87965,7 @@ ${content}` : content;
           app.workspace.openTab(found2.id);
           app.workspace.showToast(`Opened "${found2.title}"`);
         } else {
-          const res = await app.tools.executeTool("flint_search_notes", { query: clean });
+          const res = await app.tools.executeTool("Noether_search_notes", { query: clean });
           if (!res.isError && res.content.length > 0) {
             app.workspace.showToast(`Searched hearth for "${clean}"`);
           } else {
@@ -88113,7 +88112,7 @@ ${content}` : content;
             }
           ]);
         },
-        className: "h-[38px] flex items-end justify-between pr-2.5 select-none border-b border-[var(--flint-border-base,#292929)] shrink-0 relative z-20",
+        className: "h-[38px] flex items-end justify-between pr-2.5 select-none border-b border-[var(--noether-border-base,#292929)] shrink-0 relative z-20",
         children: [
           /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { className: "flex items-end gap-[2px] shrink min-w-0 flex-1 overflow-x-auto no-scrollbar relative -mb-[1px] pl-2 mr-1", children: [
             sessions.map((sess, index) => {
@@ -88132,9 +88131,9 @@ ${content}` : content;
                   },
                   title: sess.topic,
                   style: {
-                    color: isActive2 ? "var(--flint-text-primary)" : "var(--flint-text-muted)"
+                    color: isActive2 ? "var(--noether-text-primary)" : "var(--noether-text-muted)"
                   },
-                  className: `group relative flex items-center gap-1.5 px-2 text-xs cursor-pointer select-none flex-1 max-w-[140px] min-w-[36px] h-[34px] shrink ${isActive2 ? "rounded-t-[7px] bg-[#151515] border-t border-x border-b-0 border-[var(--flint-border-base,#292929)] font-normal z-20 shadow-xs" : "bg-transparent font-normal border-0 hover:z-30"}`,
+                  className: `group relative flex items-center gap-1.5 px-2 text-xs cursor-pointer select-none flex-1 max-w-[140px] min-w-[36px] h-[34px] shrink ${isActive2 ? "rounded-t-[7px] bg-[#151515] border-t border-x border-b-0 border-[var(--noether-border-base,#292929)] font-normal z-20 shadow-xs" : "bg-transparent font-normal border-0 hover:z-30"}`,
                   children: [
                     !isActive2 && /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(
                       "div",
@@ -88174,7 +88173,7 @@ ${content}` : content;
                               {
                                 d: "M 0 8 A 8 8 0 0 0 8 0",
                                 fill: "none",
-                                stroke: "var(--flint-border-base, #292929)",
+                                stroke: "var(--noether-border-base, #292929)",
                                 strokeWidth: "1",
                                 vectorEffect: "non-scaling-stroke"
                               }
@@ -88210,7 +88209,7 @@ ${content}` : content;
                               {
                                 d: "M 0 0 A 8 8 0 0 0 8 8",
                                 fill: "none",
-                                stroke: "var(--flint-border-base, #292929)",
+                                stroke: "var(--noether-border-base, #292929)",
                                 strokeWidth: "1",
                                 vectorEffect: "non-scaling-stroke"
                               }
@@ -88232,14 +88231,14 @@ ${content}` : content;
                       /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(
                         "div",
                         {
-                          className: `w-3.5 h-3.5 flex items-center justify-center shrink-0 ${isActive2 ? "text-[var(--flint-text-primary)]" : "text-[var(--flint-text-muted)] group-hover:text-[var(--flint-text-secondary)]"}`,
+                          className: `w-3.5 h-3.5 flex items-center justify-center shrink-0 ${isActive2 ? "text-[var(--noether-text-primary)]" : "text-[var(--noether-text-muted)] group-hover:text-[var(--noether-text-secondary)]"}`,
                           children: /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(DynamicHugeIcon, { iconId: sess.icon || "ChatIcon", size: 13 })
                         }
                       ),
                       /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(
                         "span",
                         {
-                          className: `truncate flex-1 min-w-0 text-[12px] ${isActive2 ? "text-[var(--flint-text-primary)]" : "text-[var(--flint-text-muted)] group-hover:text-[var(--flint-text-secondary)]"}`,
+                          className: `truncate flex-1 min-w-0 text-[12px] ${isActive2 ? "text-[var(--noether-text-primary)]" : "text-[var(--noether-text-muted)] group-hover:text-[var(--noether-text-secondary)]"}`,
                           children: sess.topic
                         }
                       )
@@ -88253,7 +88252,7 @@ ${content}` : content;
                           deleteSession(sess.id);
                         },
                         title: "Close tab",
-                        className: "absolute right-1 top-1/2 -translate-y-1/2 w-4 h-4 rounded flex items-center justify-center cursor-pointer opacity-0 group-hover:opacity-100 z-20 text-[var(--flint-text-muted)] hover:text-[var(--flint-text-primary)] hover:bg-[var(--flint-bg-card-hover)]",
+                        className: "absolute right-1 top-1/2 -translate-y-1/2 w-4 h-4 rounded flex items-center justify-center cursor-pointer opacity-0 group-hover:opacity-100 z-20 text-[var(--noether-text-muted)] hover:text-[var(--noether-text-primary)] hover:bg-[var(--noether-bg-card-hover)]",
                         children: /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(Cancel01Icon, { size: 12 })
                       }
                     )
@@ -88270,7 +88269,7 @@ ${content}` : content;
                 onClick: createNewSession,
                 disabled: !canCreateSession,
                 title: canCreateSession ? "New session" : void 0,
-                className: "w-6 h-6 p-0 -translate-y-[8px] ml-2.5 shrink-0 text-[var(--flint-text-muted)] hover:text-[var(--flint-text-primary)]",
+                className: "w-6 h-6 p-0 -translate-y-[8px] ml-2.5 shrink-0 text-[var(--noether-text-muted)] hover:text-[var(--noether-text-primary)]",
                 children: /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(PlusSignIcon, { size: 13 })
               }
             )
@@ -88284,7 +88283,7 @@ ${content}` : content;
                 onClick: clearMessages,
                 disabled: messages.length === 0,
                 title: "Clear Conversation",
-                className: "w-6 h-6 p-0 text-[var(--flint-text-muted)] hover:text-[var(--flint-text-primary)]",
+                className: "w-6 h-6 p-0 text-[var(--noether-text-muted)] hover:text-[var(--noether-text-primary)]",
                 children: /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(Delete02Icon, { size: 13 })
               }
             ),
@@ -88295,7 +88294,7 @@ ${content}` : content;
                 size: "sm",
                 onClick: handleOpenSettings,
                 title: "Copilot Settings",
-                className: "w-6 h-6 p-0 text-[var(--flint-text-muted)] hover:text-[var(--flint-text-primary)]",
+                className: "w-6 h-6 p-0 text-[var(--noether-text-muted)] hover:text-[var(--noether-text-primary)]",
                 children: /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(Settings02Icon, { size: 13 })
               }
             )
@@ -88305,16 +88304,16 @@ ${content}` : content;
     ),
     /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("div", { className: "flex-1 min-h-0 overflow-y-auto no-scrollbar px-3 py-3 space-y-3.5 select-text bg-[#151515]", children: !hasConfiguredKey ? (
       /* ── BYOK Setup / Onboarding Card ── */
-      /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("div", { className: "space-y-3 select-none", children: /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { className: "p-3.5 bg-[var(--flint-bg-card,#1e1e1e)] border border-[var(--flint-border-base,#2c2c2c)] rounded-xl space-y-3", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("div", { className: "space-y-3 select-none", children: /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { className: "p-3.5 bg-[var(--noether-bg-card,#1e1e1e)] border border-[var(--noether-border-base,#2c2c2c)] rounded-xl space-y-3", children: [
         /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { children: [
           /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { className: "flex items-center gap-1.5 mb-1", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("div", { className: "w-5 h-5 rounded flex items-center justify-center text-[var(--flint-accent,#ea580c)]", children: /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(ArtificialIntelligence01Icon, { size: 15 }) }),
-            /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("h3", { className: "text-xs font-semibold text-[var(--flint-text-primary,#ffffff)]", children: "Welcome to Copilot" })
+            /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("div", { className: "w-5 h-5 rounded flex items-center justify-center text-[var(--noether-accent,#ea580c)]", children: /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(ArtificialIntelligence01Icon, { size: 15 }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("h3", { className: "text-xs font-semibold text-[var(--noether-text-primary,#ffffff)]", children: "Welcome to Copilot" })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("p", { className: "text-[11px] text-[var(--flint-text-muted,#888888)] leading-relaxed", children: "Bring your own API key to start using Copilot with direct access to your Flint workspace." })
+          /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("p", { className: "text-[11px] text-[var(--noether-text-muted,#888888)] leading-relaxed", children: "Bring your own API key to start using Copilot with direct access to your Noether workspace." })
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { className: "space-y-1.5", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("span", { className: "text-[10px] font-medium uppercase tracking-wider text-[var(--flint-text-muted,#666666)]", children: "1. Select Provider" }),
+          /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("span", { className: "text-[10px] font-medium uppercase tracking-wider text-[var(--noether-text-muted,#666666)]", children: "1. Select Provider" }),
           /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("div", { className: "grid grid-cols-3 gap-1", children: ["anthropic", "openai", "gemini", "deepseek", "openrouter", "custom"].map(
             (p2) => {
               const isSelected = provider === p2;
@@ -88323,7 +88322,7 @@ ${content}` : content;
                 {
                   type: "button",
                   onClick: () => setProvider(p2),
-                  className: `h-7 px-1.5 rounded-[5px] text-[11px] flex items-center justify-center gap-1.5 border cursor-pointer select-none ${isSelected ? "bg-[var(--flint-accent,#ea580c)] text-white border-[var(--flint-accent,#ea580c)] font-medium" : "bg-[var(--flint-bg-input,#141414)] text-[var(--flint-text-muted,#888888)] border-[var(--flint-border-base,#282828)] hover:text-[var(--flint-text-primary,#ffffff)] hover:bg-[var(--flint-bg-card-hover,#242424)]"}`,
+                  className: `h-7 px-1.5 rounded-[5px] text-[11px] flex items-center justify-center gap-1.5 border cursor-pointer select-none ${isSelected ? "bg-[var(--noether-accent,#ea580c)] text-white border-[var(--noether-accent,#ea580c)] font-medium" : "bg-[var(--noether-bg-input,#141414)] text-[var(--noether-text-muted,#888888)] border-[var(--noether-border-base,#282828)] hover:text-[var(--noether-text-primary,#ffffff)] hover:bg-[var(--noether-bg-card-hover,#242424)]"}`,
                   children: [
                     p2 === "anthropic" && /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(ClaudeIcon, { size: 12 }),
                     p2 === "openai" && /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(ChatGptIcon, { size: 12 }),
@@ -88341,23 +88340,23 @@ ${content}` : content;
         ] }),
         providerMeta && /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)(import_jsx_runtime28.Fragment, { children: [
           /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { className: "space-y-1.5", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("span", { className: "text-[10px] font-medium uppercase tracking-wider text-[var(--flint-text-muted,#666666)]", children: "2. Get Your Key" }),
+            /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("span", { className: "text-[10px] font-medium uppercase tracking-wider text-[var(--noether-text-muted,#666666)]", children: "2. Get Your Key" }),
             /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)(
               "a",
               {
                 href: providerMeta.dashboardUrl,
                 target: "_blank",
                 rel: "noopener noreferrer",
-                className: "flex items-center justify-between p-2 rounded-lg bg-[var(--flint-bg-input,#141414)] border border-[var(--flint-border-base,#282828)] hover:border-[var(--flint-border-strong,#3c3c3c)] text-xs text-[var(--flint-text-primary,#ffffff)]",
+                className: "flex items-center justify-between p-2 rounded-lg bg-[var(--noether-bg-input,#141414)] border border-[var(--noether-border-base,#282828)] hover:border-[var(--noether-border-strong,#3c3c3c)] text-xs text-[var(--noether-text-primary,#ffffff)]",
                 children: [
                   /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("span", { className: "text-[11px] truncate", children: providerMeta.guideTitle }),
-                  /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(ExternalLinkIcon, { size: 12, className: "text-[var(--flint-text-muted)] shrink-0" })
+                  /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(ExternalLinkIcon, { size: 12, className: "text-[var(--noether-text-muted)] shrink-0" })
                 ]
               }
             )
           ] }),
           /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { className: "space-y-1.5", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("span", { className: "text-[10px] font-medium uppercase tracking-wider text-[var(--flint-text-muted,#666666)]", children: "3. Paste API Key" }),
+            /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("span", { className: "text-[10px] font-medium uppercase tracking-wider text-[var(--noether-text-muted,#666666)]", children: "3. Paste API Key" }),
             /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { className: "relative flex items-center", children: [
               /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(
                 TextInput,
@@ -88375,7 +88374,7 @@ ${content}` : content;
                 {
                   type: "button",
                   onClick: () => setShowPassword(!showPassword),
-                  className: "absolute right-2 text-[var(--flint-text-muted)] hover:text-[var(--flint-text-primary)] cursor-pointer",
+                  className: "absolute right-2 text-[var(--noether-text-muted)] hover:text-[var(--noether-text-primary)] cursor-pointer",
                   title: showPassword ? "Hide Key" : "Show Key",
                   children: showPassword ? /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(EyeOffIcon, { size: 13 }) : /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(EyeIcon, { size: 13 })
                 }
@@ -88418,10 +88417,10 @@ ${content}` : content;
     ) : messages.length === 0 ? (
       /* ── Empty State ── */
       /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { className: "h-full flex flex-col items-center justify-center text-center py-8 space-y-4 select-none", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("div", { className: "text-[var(--flint-accent,#ea580c)] flex items-center justify-center", children: /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(CopilotSidebarIcon, { size: 24 }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("div", { className: "text-[var(--noether-accent,#ea580c)] flex items-center justify-center", children: /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(CopilotSidebarIcon, { size: 24 }) }),
         /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { className: "space-y-1", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("h4", { className: "text-xs font-semibold text-[var(--flint-text-primary,#ffffff)]", children: "Copilot is ready" }),
-          /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("p", { className: "text-[11px] text-[var(--flint-text-muted,#777777)] max-w-[220px]", children: "Ask anything about your notes, synthesize ideas, or execute workspace tools." })
+          /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("h4", { className: "text-xs font-semibold text-[var(--noether-text-primary,#ffffff)]", children: "Copilot is ready" }),
+          /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("p", { className: "text-[11px] text-[var(--noether-text-muted,#777777)] max-w-[220px]", children: "Ask anything about your notes, synthesize ideas, or execute workspace tools." })
         ] })
       ] })
     ) : (
@@ -88430,7 +88429,7 @@ ${content}` : content;
         messages.map((m, index) => {
           const isUser = m.role === "user";
           if (isUser) {
-            return /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("div", { className: "w-full", children: /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("div", { className: "rounded-[8px] bg-[var(--flint-bg-card,#1c1c1c)] border border-[var(--flint-border-base,#2a2a2a)] p-3 text-[12px] leading-relaxed text-[var(--flint-text-primary,#ffffff)] whitespace-pre-wrap select-text", children: m.content }) }, m.id);
+            return /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("div", { className: "w-full", children: /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("div", { className: "rounded-[8px] bg-[var(--noether-bg-card,#1c1c1c)] border border-[var(--noether-border-base,#2a2a2a)] p-3 text-[12px] leading-relaxed text-[var(--noether-text-primary,#ffffff)] whitespace-pre-wrap select-text", children: m.content }) }, m.id);
           }
           const isEditTool = (name) => name.includes("create") || name.includes("update") || name.includes("delete") || name.includes("edit") || name.includes("write");
           const readAndQueryTools = m.toolCalls ? m.toolCalls.filter((tc2) => !isEditTool(tc2.name)) : [];
@@ -88470,27 +88469,27 @@ ${content}` : content;
                 {
                   type: "button",
                   onClick: () => readAndQueryTools.length > 0 && toggleSummaryExpanded(`${m.id}-tools`),
-                  className: `w-full px-2.5 flex items-center justify-between text-left text-[11px] text-[var(--flint-text-muted,#777777)] bg-transparent border-0 p-0 m-0 outline-none appearance-none select-none ${readAndQueryTools.length > 0 ? "cursor-pointer" : "cursor-default"}`,
+                  className: `w-full px-2.5 flex items-center justify-between text-left text-[11px] text-[var(--noether-text-muted,#777777)] bg-transparent border-0 p-0 m-0 outline-none appearance-none select-none ${readAndQueryTools.length > 0 ? "cursor-pointer" : "cursor-default"}`,
                   children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { className: "flex items-center gap-1.5 text-[11px] text-[var(--flint-text-muted,#777777)] truncate", children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("span", { className: "w-2.5 h-2.5 flex items-center justify-center shrink-0", children: /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(ReadActivityIcon, { size: 12, className: "text-[var(--flint-text-muted,#777777)] opacity-70 shrink-0" }) }),
+                    /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { className: "flex items-center gap-1.5 text-[11px] text-[var(--noether-text-muted,#777777)] truncate", children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("span", { className: "w-2.5 h-2.5 flex items-center justify-center shrink-0", children: /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(ReadActivityIcon, { size: 12, className: "text-[var(--noether-text-muted,#777777)] opacity-70 shrink-0" }) }),
                       /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("span", { className: "truncate", children: readSummaryText })
                     ] }),
-                    readAndQueryTools.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("div", { className: "shrink-0 ml-2 text-[var(--flint-text-muted,#777777)] flex items-center", children: isToolsExpanded ? /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(ChevronDownIcon, { size: 11 }) : /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(ChevronRightIcon, { size: 11 }) })
+                    readAndQueryTools.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("div", { className: "shrink-0 ml-2 text-[var(--noether-text-muted,#777777)] flex items-center", children: isToolsExpanded ? /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(ChevronDownIcon, { size: 11 }) : /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(ChevronRightIcon, { size: 11 }) })
                   ]
                 }
               ),
               isToolsExpanded && readAndQueryTools.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { className: "relative pl-[26px] pr-2.5 pt-0.5 -mt-0.5 space-y-1 select-none", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("div", { className: "absolute left-[14.5px] top-[7px] bottom-1 w-[1px] bg-[var(--flint-border-subtle,#262626)]" }),
+                /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("div", { className: "absolute left-[14.5px] top-[7px] bottom-1 w-[1px] bg-[var(--noether-border-subtle,#262626)]" }),
                 readAndQueryTools.map((tc2) => {
                   const step = formatToolExecutionFriendly(tc2);
                   const StepIcon = step.icon;
                   return /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)(
                     "div",
                     {
-                      className: "flex items-center gap-1.5 text-[11px] text-[var(--flint-text-muted,#777777)]",
+                      className: "flex items-center gap-1.5 text-[11px] text-[var(--noether-text-muted,#777777)]",
                       children: [
-                        /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("span", { className: "w-2.5 h-2.5 flex items-center justify-center shrink-0", children: /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(StepIcon, { size: 11, className: "text-[var(--flint-text-muted,#777777)] opacity-70 shrink-0" }) }),
+                        /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("span", { className: "w-2.5 h-2.5 flex items-center justify-center shrink-0", children: /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(StepIcon, { size: 11, className: "text-[var(--noether-text-muted,#777777)] opacity-70 shrink-0" }) }),
                         /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("span", { className: "truncate", children: [
                           step.label,
                           step.status === "error" ? " (failed)" : step.status === "running" ? " (running...)" : ""
@@ -88508,27 +88507,27 @@ ${content}` : content;
                 {
                   type: "button",
                   onClick: () => editTools.length > 0 && toggleSummaryExpanded(`${m.id}-edits`),
-                  className: `w-full px-2.5 flex items-center justify-between text-left text-[11px] text-[var(--flint-text-muted,#777777)] bg-transparent border-0 p-0 m-0 outline-none appearance-none select-none ${editTools.length > 0 ? "cursor-pointer" : "cursor-default"}`,
+                  className: `w-full px-2.5 flex items-center justify-between text-left text-[11px] text-[var(--noether-text-muted,#777777)] bg-transparent border-0 p-0 m-0 outline-none appearance-none select-none ${editTools.length > 0 ? "cursor-pointer" : "cursor-default"}`,
                   children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { className: "flex items-center gap-1.5 text-[11px] text-[var(--flint-text-muted,#777777)] truncate", children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("span", { className: "w-2.5 h-2.5 flex items-center justify-center shrink-0", children: /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(Edit02Icon, { size: 12, className: "text-[var(--flint-text-muted,#777777)] opacity-70 shrink-0" }) }),
+                    /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { className: "flex items-center gap-1.5 text-[11px] text-[var(--noether-text-muted,#777777)] truncate", children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("span", { className: "w-2.5 h-2.5 flex items-center justify-center shrink-0", children: /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(Edit02Icon, { size: 12, className: "text-[var(--noether-text-muted,#777777)] opacity-70 shrink-0" }) }),
                       /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("span", { className: "truncate", children: editSummaryText })
                     ] }),
-                    editTools.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("div", { className: "shrink-0 ml-2 text-[var(--flint-text-muted,#777777)] flex items-center", children: isEditsExpanded ? /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(ChevronDownIcon, { size: 11 }) : /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(ChevronRightIcon, { size: 11 }) })
+                    editTools.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("div", { className: "shrink-0 ml-2 text-[var(--noether-text-muted,#777777)] flex items-center", children: isEditsExpanded ? /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(ChevronDownIcon, { size: 11 }) : /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(ChevronRightIcon, { size: 11 }) })
                   ]
                 }
               ),
               isEditsExpanded && editTools.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { className: "relative pl-[26px] pr-2.5 pt-0.5 -mt-0.5 space-y-1 select-none", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("div", { className: "absolute left-[14.5px] top-[7px] bottom-1 w-[1px] bg-[var(--flint-border-subtle,#262626)]" }),
+                /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("div", { className: "absolute left-[14.5px] top-[7px] bottom-1 w-[1px] bg-[var(--noether-border-subtle,#262626)]" }),
                 editTools.map((tc2) => {
                   const step = formatToolExecutionFriendly(tc2);
                   const StepIcon = step.icon;
                   return /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)(
                     "div",
                     {
-                      className: "flex items-center gap-1.5 text-[11px] text-[var(--flint-text-muted,#777777)]",
+                      className: "flex items-center gap-1.5 text-[11px] text-[var(--noether-text-muted,#777777)]",
                       children: [
-                        /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("span", { className: "w-2.5 h-2.5 flex items-center justify-center shrink-0", children: /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(StepIcon, { size: 11, className: "text-[var(--flint-text-muted,#777777)] opacity-70 shrink-0" }) }),
+                        /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("span", { className: "w-2.5 h-2.5 flex items-center justify-center shrink-0", children: /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(StepIcon, { size: 11, className: "text-[var(--noether-text-muted,#777777)] opacity-70 shrink-0" }) }),
                         /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("span", { className: "truncate", children: [
                           step.label,
                           step.status === "error" ? " (failed)" : step.status === "running" ? " (running...)" : ""
@@ -88540,15 +88539,15 @@ ${content}` : content;
                 })
               ] })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("div", { className: "text-[12px] leading-relaxed text-[var(--flint-text-primary,#dedede)] px-2.5", children: /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(CopilotMarkdown, { content: m.content, onWikilinkClick: handleWikilinkClick }) }),
-            /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { className: "flex items-center justify-between pt-1 px-2.5 select-none text-[11px] text-[var(--flint-text-muted,#777777)]", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("div", { className: "flex items-center gap-1.5 text-[11px] text-[var(--flint-text-muted,#777777)]", children: m.elapsedTimeMs ? /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)(import_jsx_runtime28.Fragment, { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("div", { className: "text-[12px] leading-relaxed text-[var(--noether-text-primary,#dedede)] px-2.5", children: /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(CopilotMarkdown, { content: m.content, onWikilinkClick: handleWikilinkClick }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { className: "flex items-center justify-between pt-1 px-2.5 select-none text-[11px] text-[var(--noether-text-muted,#777777)]", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("div", { className: "flex items-center gap-1.5 text-[11px] text-[var(--noether-text-muted,#777777)]", children: m.elapsedTimeMs ? /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)(import_jsx_runtime28.Fragment, { children: [
                 /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(CopilotMatrixLoader, { isWorking: false }),
                 /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("span", { children: [
                   "Worked for ",
                   formatDuration(m.elapsedTimeMs)
                 ] })
-              ] }) : m.isStreaming ? /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("span", { className: "flex items-center gap-1.5 text-[var(--flint-text-muted,#777777)]", children: [
+              ] }) : m.isStreaming ? /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("span", { className: "flex items-center gap-1.5 text-[var(--noether-text-muted,#777777)]", children: [
                 /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(CopilotMatrixLoader, { isWorking: true }),
                 /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("span", { children: "Working..." })
               ] }) : null }),
@@ -88565,11 +88564,11 @@ ${content}` : content;
                       disabled: isGenerating || isFirstVariant,
                       onClick: () => switchVariant(m.id, "prev"),
                       "aria-label": "Previous version",
-                      className: `w-6 h-6 rounded flex items-center justify-center ${isFirstVariant ? "text-[var(--flint-text-muted,#777777)]/30 cursor-not-allowed" : "text-[var(--flint-text-muted,#777777)] hover:text-[var(--flint-text-primary,#ffffff)] hover:bg-[var(--flint-bg-card-hover,#262626)] cursor-pointer"}`,
+                      className: `w-6 h-6 rounded flex items-center justify-center ${isFirstVariant ? "text-[var(--noether-text-muted,#777777)]/30 cursor-not-allowed" : "text-[var(--noether-text-muted,#777777)] hover:text-[var(--noether-text-primary,#ffffff)] hover:bg-[var(--noether-bg-card-hover,#262626)] cursor-pointer"}`,
                       children: /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(ArrowLeft01Icon, { size: 12 })
                     }
                   ) }),
-                  /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("span", { className: "text-[10px] tabular-nums text-[var(--flint-text-muted,#777777)] select-none px-0.5", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("span", { className: "text-[10px] tabular-nums text-[var(--noether-text-muted,#777777)] select-none px-0.5", children: [
                     currentIndex + 1,
                     "/",
                     totalVariants
@@ -88587,7 +88586,7 @@ ${content}` : content;
                         }
                       },
                       "aria-label": isLatestVariant ? "Regenerate response" : "Next version",
-                      className: "w-6 h-6 rounded flex items-center justify-center text-[var(--flint-text-muted,#777777)] hover:text-[var(--flint-text-primary,#ffffff)] hover:bg-[var(--flint-bg-card-hover,#262626)] cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed",
+                      className: "w-6 h-6 rounded flex items-center justify-center text-[var(--noether-text-muted,#777777)] hover:text-[var(--noether-text-primary,#ffffff)] hover:bg-[var(--noether-bg-card-hover,#262626)] cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed",
                       children: /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(ArrowRight01Icon, { size: 12 })
                     }
                   ) }),
@@ -88597,7 +88596,7 @@ ${content}` : content;
                       type: "button",
                       onClick: () => handleCopyMessage(m.content),
                       "aria-label": "Copy message",
-                      className: "w-6 h-6 rounded flex items-center justify-center text-[var(--flint-text-muted,#777777)] hover:text-[var(--flint-text-primary,#ffffff)] hover:bg-[var(--flint-bg-card-hover,#262626)] cursor-pointer",
+                      className: "w-6 h-6 rounded flex items-center justify-center text-[var(--noether-text-muted,#777777)] hover:text-[var(--noether-text-primary,#ffffff)] hover:bg-[var(--noether-bg-card-hover,#262626)] cursor-pointer",
                       children: /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(Copy01Icon, { size: 12 })
                     }
                   ) })
@@ -88610,9 +88609,9 @@ ${content}` : content;
       ] })
     ) }),
     hasConfiguredKey && /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("div", { className: "px-3 pb-3 pt-0 bg-transparent shrink-0", children: /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { className: "p-2 rounded-[8px] border border-[#222222] bg-[#151515] shadow-lg shadow-black/40 space-y-1.5", children: [
-      includeActiveNoteContext && activeDoc?.title && /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { className: "flex items-center justify-between px-2 py-0.5 rounded-[4px] bg-[#1a1a1a] border border-[#222222] text-[10.5px] text-[var(--flint-text-muted,#888888)]", children: [
+      includeActiveNoteContext && activeDoc?.title && /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { className: "flex items-center justify-between px-2 py-0.5 rounded-[4px] bg-[#1a1a1a] border border-[#222222] text-[10.5px] text-[var(--noether-text-muted,#888888)]", children: [
         /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { className: "flex items-center gap-1.5 truncate", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(File01Icon, { size: 11, className: "text-[var(--flint-accent,#ea580c)] shrink-0" }),
+          /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(File01Icon, { size: 11, className: "text-[var(--noether-accent,#ea580c)] shrink-0" }),
           /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("span", { className: "truncate", children: [
             "Active note: ",
             activeDoc.title
@@ -88624,7 +88623,7 @@ ${content}` : content;
             type: "button",
             onClick: () => setIncludeActiveNoteContext(false),
             title: "Remove note context",
-            className: "hover:text-[var(--flint-text-primary,#ffffff)] text-[var(--flint-text-muted,#666666)] cursor-pointer px-1 font-mono",
+            className: "hover:text-[var(--noether-text-primary,#ffffff)] text-[var(--noether-text-muted,#666666)] cursor-pointer px-1 font-mono",
             children: "\xD7"
           }
         )
@@ -88638,7 +88637,7 @@ ${content}` : content;
           onChange: handleInputChange,
           onKeyDown: handleKeyDown2,
           placeholder: "Ask anything, @ to add context, / for commands",
-          className: "w-full bg-transparent border-none outline-none text-xs text-[var(--flint-text-primary,#ffffff)] placeholder:text-[var(--flint-text-muted,#666666)] resize-none min-h-[22px] max-h-32 px-1 py-0.5 leading-normal custom-scrollbar block"
+          className: "w-full bg-transparent border-none outline-none text-xs text-[var(--noether-text-primary,#ffffff)] placeholder:text-[var(--noether-text-muted,#666666)] resize-none min-h-[22px] max-h-32 px-1 py-0.5 leading-normal custom-scrollbar block"
         }
       ),
       /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { className: "flex items-center justify-between pt-0.5 gap-2 select-none", children: [
@@ -88648,7 +88647,7 @@ ${content}` : content;
             {
               type: "button",
               onClick: () => setIncludeActiveNoteContext(!includeActiveNoteContext),
-              className: `w-6 h-6 flex items-center justify-center cursor-pointer ${includeActiveNoteContext ? "rounded bg-[var(--flint-accent,#ea580c)]/15 text-[var(--flint-accent,#ea580c)] border border-[var(--flint-accent,#ea580c)]/30" : "text-[var(--flint-text-muted,#777777)] hover:text-[var(--flint-text-primary,#ffffff)]"}`,
+              className: `w-6 h-6 flex items-center justify-center cursor-pointer ${includeActiveNoteContext ? "rounded bg-[var(--noether-accent,#ea580c)]/15 text-[var(--noether-accent,#ea580c)] border border-[var(--noether-accent,#ea580c)]/30" : "text-[var(--noether-text-muted,#777777)] hover:text-[var(--noether-text-primary,#ffffff)]"}`,
               children: /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(PlusSignIcon, { size: 13 })
             }
           ) }),
@@ -88659,7 +88658,7 @@ ${content}` : content;
                 ref: modelTriggerRef,
                 type: "button",
                 onClick: handleToggleModelMenu,
-                className: "h-6 flex items-center gap-1 text-[11px] font-medium text-[var(--flint-text-muted,#777777)] hover:text-[var(--flint-text-primary,#ffffff)] cursor-pointer select-none",
+                className: "h-6 flex items-center gap-1 text-[11px] font-medium text-[var(--noether-text-muted,#777777)] hover:text-[var(--noether-text-primary,#ffffff)] cursor-pointer select-none",
                 children: [
                   /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("span", { className: "truncate max-w-[140px]", children: currentModelLabel }),
                   /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(ChevronDownIcon, { size: 10, className: "shrink-0 opacity-70" })
@@ -88677,7 +88676,7 @@ ${content}` : content;
                     left: `${modelMenuCoords.left}px`,
                     zIndex: 99999
                   },
-                  className: "w-max min-w-[180px] max-w-[280px] max-h-60 overflow-y-auto bg-[var(--flint-bg-card,#1a1a1a)] border border-[var(--flint-border-base,#282828)] rounded-[6px] p-1 shadow-lg shadow-black/60 select-none custom-scrollbar",
+                  className: "w-max min-w-[180px] max-w-[280px] max-h-60 overflow-y-auto bg-[var(--noether-bg-card,#1a1a1a)] border border-[var(--noether-border-base,#282828)] rounded-[6px] p-1 shadow-lg shadow-black/60 select-none custom-scrollbar",
                   children: modelOptions.map((opt) => {
                     const isSelected = opt.value === currentModel;
                     return /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)(
@@ -88688,10 +88687,10 @@ ${content}` : content;
                           if (provider) setModel(provider, opt.value);
                           setIsModelMenuOpen(false);
                         },
-                        className: `w-full px-2 py-1.5 rounded-[4px] text-left text-[11px] flex items-center justify-between gap-2 cursor-pointer ${isSelected ? "bg-[var(--flint-accent,#ea580c)]/15 text-[var(--flint-accent,#ea580c)] font-medium" : "text-[var(--flint-text-secondary,#bbbbbb)] hover:text-[var(--flint-text-primary,#ffffff)] hover:bg-[var(--flint-bg-card-hover,#242424)]"}`,
+                        className: `w-full px-2 py-1.5 rounded-[4px] text-left text-[11px] flex items-center justify-between gap-2 cursor-pointer ${isSelected ? "bg-[var(--noether-accent,#ea580c)]/15 text-[var(--noether-accent,#ea580c)] font-medium" : "text-[var(--noether-text-secondary,#bbbbbb)] hover:text-[var(--noether-text-primary,#ffffff)] hover:bg-[var(--noether-bg-card-hover,#242424)]"}`,
                         children: [
                           /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("span", { className: "truncate", children: opt.label }),
-                          isSelected && /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(CheckIcon, { size: 12, className: "text-[var(--flint-accent,#ea580c)] shrink-0" })
+                          isSelected && /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(CheckIcon, { size: 12, className: "text-[var(--noether-accent,#ea580c)] shrink-0" })
                         ]
                       },
                       opt.value
@@ -88701,7 +88700,7 @@ ${content}` : content;
               ),
               document.body
             )
-          ] }) : /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(Tooltip, { content: "You have to put in an API key first to check for available models", children: /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("span", { className: "h-6 flex items-center text-[11px] font-medium text-[var(--flint-text-muted,#777777)] truncate cursor-not-allowed", children: "No model selected" }) })
+          ] }) : /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(Tooltip, { content: "You have to put in an API key first to check for available models", children: /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("span", { className: "h-6 flex items-center text-[11px] font-medium text-[var(--noether-text-muted,#777777)] truncate cursor-not-allowed", children: "No model selected" }) })
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { className: "flex items-center gap-1.5 shrink-0", children: [
           /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(Tooltip, { content: "Tool execution mode", children: /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)(
@@ -88709,9 +88708,9 @@ ${content}` : content;
             {
               type: "button",
               onClick: () => setToolMode(toolMode === "auto" ? "chat_only" : "auto"),
-              className: "h-6 flex items-center gap-1 text-[11px] font-medium text-[var(--flint-text-muted,#888888)] hover:text-[var(--flint-text-primary,#ffffff)] cursor-pointer select-none",
+              className: "h-6 flex items-center gap-1 text-[11px] font-medium text-[var(--noether-text-muted,#888888)] hover:text-[var(--noether-text-primary,#ffffff)] cursor-pointer select-none",
               children: [
-                /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("span", { className: toolMode === "auto" ? "text-[var(--flint-accent,#ea580c)]" : "", children: toolMode === "auto" ? "Auto" : "Chat" }),
+                /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("span", { className: toolMode === "auto" ? "text-[var(--noether-accent,#ea580c)]" : "", children: toolMode === "auto" ? "Auto" : "Chat" }),
                 /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(ChevronDownIcon, { size: 10, className: "shrink-0 opacity-70" })
               ]
             }
@@ -88722,7 +88721,7 @@ ${content}` : content;
               type: "button",
               onClick: stopGeneration,
               title: "Stop Generating",
-              className: "flint-btn flint-btn-danger w-7 h-7 !p-0 !rounded-[5px] flex items-center justify-center cursor-pointer",
+              className: "noether-btn noether-btn-danger w-7 h-7 !p-0 !rounded-[5px] flex items-center justify-center cursor-pointer",
               children: /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(SquareIcon, { size: 11 })
             }
           ) : /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(
@@ -88732,7 +88731,7 @@ ${content}` : content;
               onClick: () => handleSendMessage(),
               disabled: !inputVal.trim(),
               title: "Send Message (Enter)",
-              className: "flint-btn w-7 h-7 !p-0 !rounded-[5px] flex items-center justify-center text-[var(--flint-text-secondary,#dddddd)] hover:text-[var(--flint-text-primary,#ffffff)]",
+              className: "noether-btn w-7 h-7 !p-0 !rounded-[5px] flex items-center justify-center text-[var(--noether-text-secondary,#dddddd)] hover:text-[var(--noether-text-primary,#ffffff)]",
               children: /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(ArrowUp01Icon, { size: 13 })
             }
           )
@@ -88749,7 +88748,7 @@ init_ui();
 init_Icons();
 var import_jsx_runtime29 = require("react/jsx-runtime");
 var CopilotSettingsTab = () => {
-  const app = useFlintApp();
+  const app = useNoetherApp();
   const provider = useCopilotStore((s) => s.provider);
   const models = useCopilotStore((s) => s.models);
   const apiKeys = useCopilotStore((s) => s.apiKeys);
@@ -88916,7 +88915,7 @@ var CopilotSettingsTab = () => {
                     onClick: () => provider && refreshModels(provider),
                     disabled: isFetchingModels,
                     className: "!p-1.5 h-7 w-7",
-                    children: /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(RotateCcwIcon, { size: 13, className: isFetchingModels ? "animate-spin text-[var(--flint-accent)]" : "" })
+                    children: /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(RotateCcwIcon, { size: 13, className: isFetchingModels ? "animate-spin text-[var(--noether-accent)]" : "" })
                   }
                 ) }) }),
                 !hasKey ? /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(Tooltip, { content: "You have to put in an API key first to check for available models", children: /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("span", { className: "inline-flex", children: /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(
@@ -88988,7 +88987,7 @@ var CopilotSettingsTab = () => {
                       type: "button",
                       onClick: () => setShowKey(!showKey),
                       disabled: !provider,
-                      className: "absolute right-2 text-[var(--flint-text-muted)] hover:text-[var(--flint-text-primary)] cursor-pointer disabled:opacity-40",
+                      className: "absolute right-2 text-[var(--noether-text-muted)] hover:text-[var(--noether-text-primary)] cursor-pointer disabled:opacity-40",
                       title: showKey ? "Hide key" : "Show key",
                       children: showKey ? /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(EyeOffIcon, { size: 13 }) : /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(EyeIcon, { size: 13 })
                     }
@@ -89008,9 +89007,9 @@ var CopilotSettingsTab = () => {
               ] })
             }
           ),
-          providerMeta ? /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { className: "p-3 bg-[var(--flint-bg-input,#141414)] border-t border-[var(--flint-border-subtle,#242424)] space-y-2", children: [
+          providerMeta ? /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { className: "p-3 bg-[var(--noether-bg-input,#141414)] border-t border-[var(--noether-border-subtle,#242424)] space-y-2", children: [
             /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { className: "flex items-center justify-between", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { className: "flex items-center gap-1.5 text-[var(--flint-text-primary,#ffffff)] font-medium text-xs", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { className: "flex items-center gap-1.5 text-[var(--noether-text-primary,#ffffff)] font-medium text-xs", children: [
                 provider === "anthropic" && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(ClaudeIcon, { size: 14 }),
                 provider === "openai" && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(ChatGptIcon, { size: 14 }),
                 provider === "gemini" && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(GoogleGeminiIcon, { size: 14 }),
@@ -89025,7 +89024,7 @@ var CopilotSettingsTab = () => {
                   href: providerMeta.dashboardUrl,
                   target: "_blank",
                   rel: "noopener noreferrer",
-                  className: "inline-flex items-center gap-1 text-[11px] text-[var(--flint-accent,#ea580c)] hover:underline",
+                  className: "inline-flex items-center gap-1 text-[11px] text-[var(--noether-accent,#ea580c)] hover:underline",
                   children: [
                     /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("span", { children: "Open Provider Dashboard" }),
                     /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(ExternalLinkIcon, { size: 11 })
@@ -89033,7 +89032,7 @@ var CopilotSettingsTab = () => {
                 }
               )
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("ol", { className: "list-decimal list-inside text-[11px] text-[var(--flint-text-muted,#888888)] space-y-1", children: providerMeta.guideSteps.map((step, idx) => /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("li", { children: step }, idx)) }),
+            /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("ol", { className: "list-decimal list-inside text-[11px] text-[var(--noether-text-muted,#888888)] space-y-1", children: providerMeta.guideSteps.map((step, idx) => /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("li", { children: step }, idx)) }),
             testState === "success" && /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { className: "flex items-center gap-1.5 text-[11px] text-[#22c55e] pt-1", children: [
               /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(CheckIcon, { size: 13 }),
               /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("span", { children: "Connection successful! Model is ready." })
@@ -89042,7 +89041,7 @@ var CopilotSettingsTab = () => {
               /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(Alert02Icon, { size: 13 }),
               /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("span", { children: testError || "Connection failed" })
             ] })
-          ] }) : /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("div", { className: "p-3 bg-[var(--flint-bg-input,#141414)] border-t border-[var(--flint-border-subtle,#242424)] text-[11px] text-[var(--flint-text-muted,#888888)] text-center", children: "Select a provider above to view credentials and guided onboarding instructions." })
+          ] }) : /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("div", { className: "p-3 bg-[var(--noether-bg-input,#141414)] border-t border-[var(--noether-border-subtle,#242424)] text-[11px] text-[var(--noether-text-muted,#888888)] text-center", children: "Select a provider above to view credentials and guided onboarding instructions." })
         ]
       }
     ),
@@ -89080,8 +89079,8 @@ var CopilotSettingsTab = () => {
           /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(
             SettingItem,
             {
-              name: "Enable Flint MCP Tools",
-              description: "Allow Copilot to autonomously execute built-in tools (flint_search_notes, flint_read_note, backlinks, note creation) to answer questions about your hearth.",
+              name: "Enable Noether MCP Tools",
+              description: "Allow Copilot to autonomously execute built-in tools (Noether_search_notes, Noether_read_note, backlinks, note creation) to answer questions about your hearth.",
               controlClassName: "justify-end",
               children: /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(
                 ToggleSwitch,
@@ -89150,7 +89149,7 @@ var CopilotSettingsTab = () => {
             rows: 4,
             value: systemPrompt,
             onChange: (e2) => setSystemPrompt(e2.target.value),
-            className: "w-full p-2.5 rounded-lg bg-[var(--flint-bg-input,#141414)] border border-[var(--flint-border-base,#282828)] focus:border-[var(--flint-accent,#ea580c)] text-xs text-[var(--flint-text-primary,#ffffff)] outline-none leading-relaxed resize-y custom-scrollbar"
+            className: "w-full p-2.5 rounded-lg bg-[var(--noether-bg-input,#141414)] border border-[var(--noether-border-base,#282828)] focus:border-[var(--noether-accent,#ea580c)] text-xs text-[var(--noether-text-primary,#ffffff)] outline-none leading-relaxed resize-y custom-scrollbar"
           }
         ) })
       }
@@ -89177,10 +89176,10 @@ var CopilotSettingsTab = () => {
                     step: 0.05,
                     value: temperature,
                     onChange: (e2) => setTemperature(parseFloat(e2.target.value)),
-                    className: "w-36 accent-[var(--flint-accent,#ea580c)] cursor-pointer"
+                    className: "w-36 accent-[var(--noether-accent,#ea580c)] cursor-pointer"
                   }
                 ),
-                /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("span", { className: "font-mono text-xs text-[var(--flint-text-muted)] w-8", children: temperature.toFixed(2) })
+                /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("span", { className: "font-mono text-xs text-[var(--noether-text-muted)] w-8", children: temperature.toFixed(2) })
               ] })
             }
           ),
@@ -89222,15 +89221,15 @@ var CopilotSettingsTab = () => {
 
 // readme.ts
 var copilotReadme = `
-# Copilot For Flint
+# Copilot For Noether
 
-**Copilot For Flint** is a fast, unobtrusive, intelligent workspace copilot built specifically for Flint knowledge bases. It docks seamlessly into the right sidebar, offering instant assistance, note summarization, task extraction, and autonomous workspace access through Flint's built-in Model Context Protocol (MCP) tools.
+**Copilot For Noether** is a fast, unobtrusive, intelligent workspace copilot built specifically for Noether knowledge bases. It docks seamlessly into the right sidebar, offering instant assistance, note summarization, task extraction, and autonomous workspace access through Noether's built-in Model Context Protocol (MCP) tools.
 
 ---
 
 ## Key Features
 
-- **Fast Right Sidebar Assistant**: Always available with zero distraction, perfectly matching Flint's native desktop aesthetics.
+- **Fast Right Sidebar Assistant**: Always available with zero distraction, perfectly matching Noether's native desktop aesthetics.
 - **Dynamic Hugeicons Branding**: Automatically reflects your active AI engine in the sidebar tab icon, switching dynamically between Claude (\`ClaudeIcon\`), ChatGPT (\`ChatGptIcon\`), Gemini (\`GoogleGeminiIcon\`), DeepSeek (\`DeepseekIcon\`), and the master \`ArtificialIntelligence01Icon\`.
 - **Bring Your Own Key (BYOK)**: Connect directly to your preferred provider with zero intermediary servers. Supports:
   - **Anthropic**: Claude 3.7 Sonnet, Claude 3.5 Sonnet, Claude 3.5 Haiku
@@ -89239,11 +89238,11 @@ var copilotReadme = `
   - **DeepSeek**: DeepSeek-V3, DeepSeek-R1
   - **OpenRouter & Local**: Ollama, LM Studio, or any OpenAI-compatible API
 - **Dynamic Live Model Discovery**: Automatically discovers all available models from provider APIs and custom endpoints with 1-click refresh and custom model ID support.
-- **Direct Workspace MCP Tool Access**: Copilot autonomously calls Flint's native tools (\`flint_search_notes\`, \`flint_read_note\`, \`flint_get_backlinks\`, \`flint_create_note\`) to retrieve and verify factual knowledge from your vault.
+- **Direct Workspace MCP Tool Access**: Copilot autonomously calls Noether's native tools (\`noether_search_notes\`, \`noether_read_note\`, \`noether_get_backlinks\`, \`noether_create_note\`) to retrieve and verify factual knowledge from your vault.
 - **Context Awareness**: 1-click toggle to include or exclude the currently active note in the editor as prompt context.
 - **Quick Action Presets**: Instantly summarize notes, extract actionable todos, polish prose, and discover related notes with dedicated Hugeicon action chips.
 - **Editor Actions**: 1-click copy, direct insertion into your active document, or instant creation of a new note in your vault.
-- **Zero Micro-Interaction Lag**: Follows Flint's strict native desktop performance guidelines with instantaneous UI responsiveness.
+- **Zero Micro-Interaction Lag**: Follows Noether's strict native desktop performance guidelines with instantaneous UI responsiveness.
 
 ---
 
@@ -89258,7 +89257,7 @@ var copilotReadme = `
 
 ## MCP Tools Provided
 
-Copilot For Flint also registers native MCP tools callable by other extensions and AI clients:
+Copilot For Noether also registers native MCP tools callable by other extensions and AI clients:
 - \`copilot_chat\`: Prompt Copilot programmatically with query and system context.
 - \`copilot_get_status\`: Retrieve active provider, model, and BYOK credential status.
 
@@ -89271,10 +89270,10 @@ Copilot For Flint also registers native MCP tools callable by other extensions a
 init_Icons();
 var import_jsx_runtime30 = require("react/jsx-runtime");
 var COPILOT_MANIFEST = {
-  id: "flint-copilot",
-  name: "Copilot For Flint",
+  id: "noether-copilot",
+  name: "Copilot",
   version: "1.0.0",
-  description: "Fast, intelligent AI copilot assistant with BYOK multi-provider support and direct access to Flint workspace MCP tools.",
+  description: "Fast, intelligent AI copilot assistant with BYOK multi-provider support and direct access to noether workspace MCP tools.",
   author: "Yuliet Li",
   isCore: false,
   tags: ["ai", "copilot", "assistant", "mcp", "chat", "byok", "workspace"],
@@ -89305,7 +89304,7 @@ var CopilotExtension = class extends Extension {
       hotkey: "Ctrl+J",
       allowInInput: true,
       action: (app) => {
-        const ed2 = app.editor.getActiveEditor() || window.__flintEditor;
+        const ed2 = app.editor.getActiveEditor() || window.__noetherEditor;
         let selectedText = "";
         if (ed2 && ed2.state) {
           const { from: from2, to: to2, empty: empty2 } = ed2.state.selection;
@@ -89357,7 +89356,7 @@ var CopilotExtension = class extends Extension {
       id: "copilot:polish-writing",
       title: "Copilot: Polish Writing & Clarity",
       action: (app) => {
-        const ed2 = app.editor.getActiveEditor() || window.__flintEditor;
+        const ed2 = app.editor.getActiveEditor() || window.__noetherEditor;
         let selectedText = "";
         if (ed2 && ed2.state) {
           const { from: from2, to: to2, empty: empty2 } = ed2.state.selection;
@@ -89929,7 +89928,7 @@ ${contentText.slice(0, 15e3)}` : void 0 }
     });
     this.registerTool({
       name: "copilot_chat",
-      description: "Query Copilot for Flint programmatically with prompt and receive an AI-synthesized answer.",
+      description: "Query Copilot for noether programmatically with prompt and receive an AI-synthesized answer.",
       parameters: {
         type: "object",
         properties: {
@@ -89995,7 +89994,7 @@ ${contentText.slice(0, 15e3)}` : void 0 }
             {
               type: "text",
               text: JSON.stringify({
-                extension: "flint-copilot",
+                extension: "noether-copilot",
                 author: "Yuliet Li",
                 provider: provider || "unconfigured",
                 providerName,

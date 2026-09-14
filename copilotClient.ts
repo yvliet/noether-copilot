@@ -1,12 +1,12 @@
 /**
  * @module CopilotClient
  * @description
- * Resilient, multi-protocol LLM client and autonomous MCP tool execution loop for Copilot For Flint.
+ * Resilient, multi-protocol LLM client and autonomous MCP tool execution loop for Copilot For Noether.
  * Supports standard Server-Sent Events (SSE) streaming and native function calling across:
  * - OpenAI Chat Completions (OpenAI, DeepSeek, Gemini OpenAI endpoint, OpenRouter, Local Ollama)
  * - Anthropic Messages API (Claude 3.5 Haiku, Claude 3.7 Sonnet)
  *
- * Automatically inspects Flint's native ToolRegistry (app.tools) and bridges workspace tools
+ * Automatically inspects Noether's native ToolRegistry (app.tools) and bridges workspace tools
  * (document retrieval, full-text search, backlinks, tag management, note manipulation)
  * directly into the model's function calling context.
  *
@@ -14,7 +14,7 @@
  * @since 1.0.0
  */
 
-import type { FlintApp } from '@/core/app/FlintApp';
+import type { NoetherApp } from '@/core/app/NoetherApp';
 import type { McpToolDefinition } from '@/core/extensions/types';
 import {
   useCopilotStore,
@@ -49,7 +49,7 @@ export interface RunCopilotOptions extends StreamDeltaCallback {
 }
 
 /**
- * Converts Flint's McpToolDefinition array into OpenAI Function Calling format.
+ * Converts Noether's McpToolDefinition array into OpenAI Function Calling format.
  */
 function toOpenAiTools(tools: readonly McpToolDefinition[]) {
   return tools.map((t) => ({
@@ -63,7 +63,7 @@ function toOpenAiTools(tools: readonly McpToolDefinition[]) {
 }
 
 /**
- * Converts Flint's McpToolDefinition array into Anthropic Tool format.
+ * Converts Noether's McpToolDefinition array into Anthropic Tool format.
  */
 function toAnthropicTools(tools: readonly McpToolDefinition[]) {
   return tools.map((t) => ({
@@ -74,12 +74,12 @@ function toAnthropicTools(tools: readonly McpToolDefinition[]) {
 }
 
 /**
- * Resolves the active document's context from Flint for prompt injection.
+ * Resolves the active document's context from Noether for prompt injection.
  * Supports token-efficient smart compact outline (metadata + headings + links)
  * or legacy full-text extraction.
  */
 export function getSmartDocumentContext(
-  app: FlintApp,
+  app: NoetherApp,
   mode: 'smart_compact' | 'full_text' | 'disabled' = 'smart_compact'
 ): string | null {
   if (mode === 'disabled') return null;
@@ -202,7 +202,7 @@ export function getSmartDocumentContext(
       lines.push(`Opening Excerpt: "${excerpt}${wordCount > 100 ? '...' : ''}"`);
     }
     lines.push('');
-    lines.push(`[Token-saving notice: You have the structural outline and link topology above. If you need verbatim text or specific paragraphs to fulfill the user request, call \`flint_read_note(documentId: "${doc.id}")\`.]`);
+    lines.push(`[Token-saving notice: You have the structural outline and link topology above. If you need verbatim text or specific paragraphs to fulfill the user request, call \`noether_read_note(documentId: "${doc.id}")\`.]`);
 
     return lines.join('\n');
   } catch (err) {
@@ -214,7 +214,7 @@ export function getSmartDocumentContext(
 /**
  * Backwards-compatibility wrapper for getSmartDocumentContext.
  */
-export function getActiveDocumentContext(app: FlintApp): string | null {
+export function getActiveDocumentContext(app: NoetherApp): string | null {
   const store = useCopilotStore.getState();
   return getSmartDocumentContext(app, store.contextMode || 'smart_compact');
 }
@@ -269,7 +269,7 @@ function extractTextFromTipTap(node: any): string {
  * Handles multi-round autonomous MCP tool execution if the model requests function calling.
  */
 export async function runCopilotTurn(
-  app: FlintApp,
+  app: NoetherApp,
   userPrompt: string,
   callbacksOrOptions: StreamDeltaCallback | RunCopilotOptions
 ): Promise<string> {
@@ -320,11 +320,11 @@ export async function runCopilotTurn(
     }
   }
 
-  // 4. Retrieve registered MCP tools from Flint
+  // 4. Retrieve registered MCP tools from Noether
   const enableTools = store.enableMcpTools && store.toolMode !== 'chat_only';
   const mcpTools = enableTools ? app.tools.getAllTools() : [];
 
-  // Dynamic Capability Discovery: Inspect active extension tools cleanly via Flint ToolRegistry
+  // Dynamic Capability Discovery: Inspect active extension tools cleanly via Noether ToolRegistry
   const hasGraphTools = mcpTools.some((t) => t.name.startsWith('graph-view_'));
   if (hasGraphTools) {
     contextualSystemPrompt +=
@@ -340,7 +340,7 @@ export async function runCopilotTurn(
 
   // Always guide the model to cite notes as clickable wikilinks
   contextualSystemPrompt +=
-    '\n\nNOTE CITATION INSTRUCTION: When referencing any note by title or suggesting related notes, always format it as a clickable Flint wikilink: `[[Note Title]]`.';
+    '\n\nNOTE CITATION INSTRUCTION: When referencing any note by title or suggesting related notes, always format it as a clickable Noether wikilink: `[[Note Title]]`.';
 
   const messageHistory = options.history || store.messages;
 
@@ -438,7 +438,7 @@ export async function runCopilotTurn(
 // ─────────────────────────────────────────────────────────────
 
 async function executeOpenAiCompatibleLoop(
-  app: FlintApp,
+  app: NoetherApp,
   provider: CopilotProvider,
   apiKey: string,
   model: string,
@@ -483,8 +483,8 @@ async function executeOpenAiCompatibleLoop(
     headers['Authorization'] = `Bearer ${apiKey}`;
   }
   if (provider === 'openrouter') {
-    headers['HTTP-Referer'] = 'https://flint.app';
-    headers['X-Title'] = 'Copilot for Flint';
+    headers['HTTP-Referer'] = 'https://Noether.app';
+    headers['X-Title'] = 'Copilot for Noether';
   }
 
   // Format messages
@@ -662,7 +662,7 @@ async function executeOpenAiCompatibleLoop(
 // ─────────────────────────────────────────────────────────────
 
 async function executeAnthropicLoop(
-  app: FlintApp,
+  app: NoetherApp,
   apiKey: string,
   model: string,
   systemPrompt: string,
@@ -856,7 +856,7 @@ async function executeAnthropicLoop(
  * appends messages to the reactive DAG, and streams the AI answer live into the chat thread.
  */
 export async function executeCopilotChatPrompt(
-  app: FlintApp,
+  app: NoetherApp,
   text: string,
   options?: { contextOverride?: string }
 ): Promise<void> {

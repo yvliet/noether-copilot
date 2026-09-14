@@ -1,7 +1,7 @@
 /**
  * @module CopilotModels
  * @description
- * Provider catalogs, modern flagship LLM defaults, and dynamic live model discovery for Copilot For Flint.
+ * Provider catalogs, modern flagship LLM defaults, and dynamic live model discovery for Copilot for Noether.
  * Queries provider APIs dynamically to retrieve up-to-date models without hardcoded obsolescence.
  *
  * @author Yuliet Li
@@ -47,7 +47,7 @@ export const PROVIDER_CATALOG: Record<CopilotProvider, ProviderMetadata> = {
     guideSteps: [
       'Navigate to console.anthropic.com/settings/keys.',
       'Log in or register your Anthropic account.',
-      'Click "Create Key", assign a name (e.g. "Flint Copilot"), and copy the generated secret key.',
+      'Click "Create Key", assign a name (e.g. "Noether Copilot"), and copy the generated secret key.',
     ],
   },
   openai: {
