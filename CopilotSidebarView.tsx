@@ -66,6 +66,7 @@ import {
   Edit02Icon,
 } from '@/components/common/Icons';
 import { Button, TextInput } from '@/components/ui';
+import { SidebarActionButton } from '@/components/common/SidebarActionHeader';
 import { Tooltip } from '@/components/common/Tooltip';
 import { useAppContextMenu, ContextMenuItem } from '@/components/common/ContextMenu';
 import { CopilotMarkdown } from './CopilotMarkdown';
@@ -970,26 +971,18 @@ export const CopilotSidebarView: React.FC = () => {
 
           {/* Right Header Controls */}
           <div className="flex items-center gap-0.5 shrink-0 self-center pl-1">
-            <Button
-              variant="ghost"
-              size="sm"
+            <SidebarActionButton
               onClick={clearMessages}
               disabled={messages.length === 0}
               title="Clear Conversation"
-              className="w-6 h-6 p-0 text-[var(--noether-text-muted)] hover:text-[var(--noether-text-primary)]"
-            >
-              <Delete02Icon size={13} />
-            </Button>
+              icon={<Delete02Icon size={16} />}
+            />
 
-            <Button
-              variant="ghost"
-              size="sm"
+            <SidebarActionButton
               onClick={handleOpenSettings}
               title="Copilot Settings"
-              className="w-6 h-6 p-0 text-[var(--noether-text-muted)] hover:text-[var(--noether-text-primary)]"
-            >
-              <Settings02Icon size={13} />
-            </Button>
+              icon={<Settings02Icon size={16} />}
+            />
           </div>
         </div>
       )}
