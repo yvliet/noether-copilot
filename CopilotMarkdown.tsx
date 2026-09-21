@@ -106,7 +106,7 @@ export const CopilotMarkdown: React.FC<CopilotMarkdownProps> = React.memo(({ con
                 <button
                   type="button"
                   onClick={() => handleCopyCode(currentCode, currentIndex)}
-                  className="inline-flex items-center gap-1 hover:text-[var(--noether-text-primary,#ffffff)] cursor-pointer select-none"
+                  className="inline-flex items-center gap-1 hover:text-[var(--noether-text-primary,#ffffff)] select-none"
                   title="Copy code"
                 >
                   {isCopied ? (
@@ -244,7 +244,7 @@ function renderInlineTokens(raw: string): string {
       // Wikilinks: [[Note Title]] rendered with Noether accent styling and interactive data attribute
       .replace(
         /\[\[(.*?)\]\]/g,
-        '<span data-wikilink="$1" class="inline-flex items-center px-1.5 py-0.5 mx-0.5 rounded text-[11px] font-medium bg-[var(--noether-accent,#ea580c)]/10 text-[var(--noether-accent,#ea580c)] border border-[var(--noether-accent,#ea580c)]/25 hover:bg-[var(--noether-accent,#ea580c)]/20 cursor-pointer select-none align-baseline"><span>[[$1]]</span></span>'
+        '<span data-wikilink="$1" class="inline-flex items-center px-1.5 py-0.5 mx-0.5 rounded text-[11px] font-medium bg-[var(--noether-accent,#ea580c)]/10 text-[var(--noether-accent,#ea580c)] border border-[var(--noether-accent,#ea580c)]/25 hover:bg-[var(--noether-accent,#ea580c)]/20 select-none align-baseline"><span>[[$1]]</span></span>'
       )
       // Inline code
       .replace(/`([^`]+)`/g, '<code class="bg-[var(--noether-bg-card,#252525)] border border-[var(--noether-border-base,#333333)] text-[var(--noether-accent,#ea580c)] font-mono text-[11px] px-1 py-0.5 rounded-[4px]">$1</code>')

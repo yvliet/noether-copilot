@@ -329,7 +329,7 @@ export const CopilotSettingsTab: React.FC = () => {
                 type="button"
                 onClick={() => setShowKey(!showKey)}
                 disabled={!provider}
-                className="absolute right-2 text-[var(--noether-text-muted)] hover:text-[var(--noether-text-primary)] cursor-pointer disabled:opacity-40"
+                className="absolute right-2 text-[var(--noether-text-muted)] hover:text-[var(--noether-text-primary)] disabled:opacity-40"
                 title={showKey ? 'Hide key' : 'Show key'}
               >
                 {showKey ? <EyeOffIcon size={13} /> : <EyeIcon size={13} />}
@@ -510,7 +510,7 @@ export const CopilotSettingsTab: React.FC = () => {
               step={0.05}
               value={temperature}
               onChange={(e) => setTemperature(parseFloat(e.target.value))}
-              className="w-36 accent-[var(--noether-accent,#ea580c)] cursor-pointer"
+              className="w-36 accent-[var(--noether-accent,#ea580c)]"
             />
             <span className="font-mono text-xs text-[var(--noether-text-muted)] w-8">
               {temperature.toFixed(2)}

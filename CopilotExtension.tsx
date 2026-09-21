@@ -568,7 +568,7 @@ export class CopilotExtension extends Extension {
           return React.createElement(
             'span',
             {
-              className: 'inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-mono cursor-pointer select-none bg-[var(--noether-btn-hover-bg,#333)] text-[var(--noether-text-muted,#888)] border border-[var(--noether-border,#222)] hover:text-[var(--noether-text,#fff)]',
+              className: 'inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-mono select-none bg-[var(--noether-btn-hover-bg,#333)] text-[var(--noether-text-muted,#888)] border border-[var(--noether-border,#222)] hover:text-[var(--noether-text,#fff)]',
               title: `Copilot Active: ${provider} (${store.models[provider] || 'default'}) • Click to chat`,
               onClick: (e: React.MouseEvent) => {
                 e.stopPropagation();

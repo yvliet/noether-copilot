@@ -842,7 +842,7 @@ export const CopilotSidebarView: React.FC = () => {
                       ? 'var(--noether-text-primary)'
                       : 'var(--noether-text-muted)',
                   }}
-                  className={`group relative flex items-center gap-1.5 px-2 text-xs cursor-pointer select-none flex-1 max-w-[140px] min-w-[36px] h-[34px] shrink ${
+                  className={`group relative flex items-center gap-1.5 px-2 text-xs select-none flex-1 max-w-[140px] min-w-[36px] h-[34px] shrink ${
                     isActive
                       ? 'rounded-t-[7px] bg-[#151515] border-t border-x border-b-0 border-[var(--noether-border-base,#292929)] font-normal z-20 shadow-xs'
                       : 'bg-transparent font-normal border-0 hover:z-30'
@@ -948,7 +948,7 @@ export const CopilotSidebarView: React.FC = () => {
                       deleteSession(sess.id);
                     }}
                     title="Close tab"
-                    className="absolute right-1 top-1/2 -translate-y-1/2 w-4 h-4 rounded flex items-center justify-center cursor-pointer opacity-0 group-hover:opacity-100 z-20 text-[var(--noether-text-muted)] hover:text-[var(--noether-text-primary)] hover:bg-[var(--noether-bg-card-hover)]"
+                    className="absolute right-1 top-1/2 -translate-y-1/2 w-4 h-4 rounded flex items-center justify-center opacity-0 group-hover:opacity-100 z-20 text-[var(--noether-text-muted)] hover:text-[var(--noether-text-primary)] hover:bg-[var(--noether-bg-card-hover)]"
                   >
                     <Cancel01Icon size={12} />
                   </button>
@@ -1021,7 +1021,7 @@ export const CopilotSidebarView: React.FC = () => {
                           key={p}
                           type="button"
                           onClick={() => setProvider(p)}
-                          className={`h-7 px-1.5 rounded-[5px] text-[11px] flex items-center justify-center gap-1.5 border cursor-pointer select-none ${
+                          className={`h-7 px-1.5 rounded-[5px] text-[11px] flex items-center justify-center gap-1.5 border select-none ${
                             isSelected
                               ? 'bg-[var(--noether-accent,#ea580c)] text-white border-[var(--noether-accent,#ea580c)] font-medium'
                               : 'bg-[var(--noether-bg-input,#141414)] text-[var(--noether-text-muted,#888888)] border-[var(--noether-border-base,#282828)] hover:text-[var(--noether-text-primary,#ffffff)] hover:bg-[var(--noether-bg-card-hover,#242424)]'
@@ -1076,7 +1076,7 @@ export const CopilotSidebarView: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
-                        className="absolute right-2 text-[var(--noether-text-muted)] hover:text-[var(--noether-text-primary)] cursor-pointer"
+                        className="absolute right-2 text-[var(--noether-text-muted)] hover:text-[var(--noether-text-primary)]"
                         title={showPassword ? 'Hide Key' : 'Show Key'}
                       >
                         {showPassword ? <EyeOffIcon size={13} /> : <EyeIcon size={13} />}
@@ -1218,9 +1218,7 @@ export const CopilotSidebarView: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => readAndQueryTools.length > 0 && toggleSummaryExpanded(`${m.id}-tools`)}
-                        className={`w-full px-2.5 flex items-center justify-between text-left text-[11px] text-[var(--noether-text-muted,#777777)] bg-transparent border-0 p-0 m-0 outline-none appearance-none select-none ${
-                          readAndQueryTools.length > 0 ? 'cursor-pointer' : 'cursor-default'
-                        }`}
+                        className="w-full px-2.5 flex items-center justify-between text-left text-[11px] text-[var(--noether-text-muted,#777777)] bg-transparent border-0 p-0 m-0 outline-none appearance-none select-none"
                       >
                         <div className="flex items-center gap-1.5 text-[11px] text-[var(--noether-text-muted,#777777)] truncate">
                           <span className="w-2.5 h-2.5 flex items-center justify-center shrink-0">
@@ -1269,9 +1267,7 @@ export const CopilotSidebarView: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => editTools.length > 0 && toggleSummaryExpanded(`${m.id}-edits`)}
-                        className={`w-full px-2.5 flex items-center justify-between text-left text-[11px] text-[var(--noether-text-muted,#777777)] bg-transparent border-0 p-0 m-0 outline-none appearance-none select-none ${
-                          editTools.length > 0 ? 'cursor-pointer' : 'cursor-default'
-                        }`}
+                        className="w-full px-2.5 flex items-center justify-between text-left text-[11px] text-[var(--noether-text-muted,#777777)] bg-transparent border-0 p-0 m-0 outline-none appearance-none select-none"
                       >
                         <div className="flex items-center gap-1.5 text-[11px] text-[var(--noether-text-muted,#777777)] truncate">
                           <span className="w-2.5 h-2.5 flex items-center justify-center shrink-0">
@@ -1355,7 +1351,7 @@ export const CopilotSidebarView: React.FC = () => {
                                   className={`w-6 h-6 rounded flex items-center justify-center ${
                                     isFirstVariant
                                       ? 'text-[var(--noether-text-muted,#777777)]/30 cursor-not-allowed'
-                                      : 'text-[var(--noether-text-muted,#777777)] hover:text-[var(--noether-text-primary,#ffffff)] hover:bg-[var(--noether-bg-card-hover,#262626)] cursor-pointer'
+                                      : 'text-[var(--noether-text-muted,#777777)] hover:text-[var(--noether-text-primary,#ffffff)] hover:bg-[var(--noether-bg-card-hover,#262626)]'
                                   }`}
                                 >
                                   <ArrowLeft01Icon size={12} />
@@ -1380,7 +1376,7 @@ export const CopilotSidebarView: React.FC = () => {
                                     }
                                   }}
                                   aria-label={isLatestVariant ? 'Regenerate response' : 'Next version'}
-                                  className="w-6 h-6 rounded flex items-center justify-center text-[var(--noether-text-muted,#777777)] hover:text-[var(--noether-text-primary,#ffffff)] hover:bg-[var(--noether-bg-card-hover,#262626)] cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
+                                  className="w-6 h-6 rounded flex items-center justify-center text-[var(--noether-text-muted,#777777)] hover:text-[var(--noether-text-primary,#ffffff)] hover:bg-[var(--noether-bg-card-hover,#262626)] disabled:opacity-30 disabled:cursor-not-allowed"
                                 >
                                   <ArrowRight01Icon size={12} />
                                 </button>
@@ -1392,7 +1388,7 @@ export const CopilotSidebarView: React.FC = () => {
                                   type="button"
                                   onClick={() => handleCopyMessage(m.content)}
                                   aria-label="Copy message"
-                                  className="w-6 h-6 rounded flex items-center justify-center text-[var(--noether-text-muted,#777777)] hover:text-[var(--noether-text-primary,#ffffff)] hover:bg-[var(--noether-bg-card-hover,#262626)] cursor-pointer"
+                                  className="w-6 h-6 rounded flex items-center justify-center text-[var(--noether-text-muted,#777777)] hover:text-[var(--noether-text-primary,#ffffff)] hover:bg-[var(--noether-bg-card-hover,#262626)]"
                                 >
                                   <Copy01Icon size={12} />
                                 </button>
@@ -1426,7 +1422,7 @@ export const CopilotSidebarView: React.FC = () => {
                   type="button"
                   onClick={() => setIncludeActiveNoteContext(false)}
                   title="Remove note context"
-                  className="hover:text-[var(--noether-text-primary,#ffffff)] text-[var(--noether-text-muted,#666666)] cursor-pointer px-1 font-mono"
+                  className="hover:text-[var(--noether-text-primary,#ffffff)] text-[var(--noether-text-muted,#666666)] px-1 font-mono"
                 >
                   ×
                 </button>
@@ -1453,7 +1449,7 @@ export const CopilotSidebarView: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setIncludeActiveNoteContext(!includeActiveNoteContext)}
-                    className={`w-6 h-6 flex items-center justify-center cursor-pointer ${
+                    className={`w-6 h-6 flex items-center justify-center ${
                       includeActiveNoteContext
                         ? 'rounded bg-[var(--noether-accent,#ea580c)]/15 text-[var(--noether-accent,#ea580c)] border border-[var(--noether-accent,#ea580c)]/30'
                         : 'text-[var(--noether-text-muted,#777777)] hover:text-[var(--noether-text-primary,#ffffff)]'
@@ -1470,7 +1466,7 @@ export const CopilotSidebarView: React.FC = () => {
                       ref={modelTriggerRef}
                       type="button"
                       onClick={handleToggleModelMenu}
-                      className="h-6 flex items-center gap-1 text-[11px] font-medium text-[var(--noether-text-muted,#777777)] hover:text-[var(--noether-text-primary,#ffffff)] cursor-pointer select-none"
+                      className="h-6 flex items-center gap-1 text-[11px] font-medium text-[var(--noether-text-muted,#777777)] hover:text-[var(--noether-text-primary,#ffffff)] select-none"
                     >
                       <span className="truncate max-w-[140px]">{currentModelLabel}</span>
                       <ChevronDownIcon size={10} className="shrink-0 opacity-70" />
@@ -1498,7 +1494,7 @@ export const CopilotSidebarView: React.FC = () => {
                                   if (provider) setModel(provider, opt.value);
                                   setIsModelMenuOpen(false);
                                 }}
-                                className={`w-full px-2 py-1.5 rounded-[4px] text-left text-[11px] flex items-center justify-between gap-2 cursor-pointer ${
+                                className={`w-full px-2 py-1.5 rounded-[4px] text-left text-[11px] flex items-center justify-between gap-2 ${
                                   isSelected
                                     ? 'bg-[var(--noether-accent,#ea580c)]/15 text-[var(--noether-accent,#ea580c)] font-medium'
                                     : 'text-[var(--noether-text-secondary,#bbbbbb)] hover:text-[var(--noether-text-primary,#ffffff)] hover:bg-[var(--noether-bg-card-hover,#242424)]'
@@ -1529,7 +1525,7 @@ export const CopilotSidebarView: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setToolMode(toolMode === 'auto' ? 'chat_only' : 'auto')}
-                    className="h-6 flex items-center gap-1 text-[11px] font-medium text-[var(--noether-text-muted,#888888)] hover:text-[var(--noether-text-primary,#ffffff)] cursor-pointer select-none"
+                    className="h-6 flex items-center gap-1 text-[11px] font-medium text-[var(--noether-text-muted,#888888)] hover:text-[var(--noether-text-primary,#ffffff)] select-none"
                   >
                     <span className={toolMode === 'auto' ? 'text-[var(--noether-accent,#ea580c)]' : ''}>
                       {toolMode === 'auto' ? 'Auto' : 'Chat'}
@@ -1544,7 +1540,7 @@ export const CopilotSidebarView: React.FC = () => {
                     type="button"
                     onClick={stopGeneration}
                     title="Stop Generating"
-                    className="noether-btn noether-btn-danger w-7 h-7 !p-0 !rounded-[5px] flex items-center justify-center cursor-pointer"
+                    className="noether-btn noether-btn-danger w-7 h-7 !p-0 !rounded-[5px] flex items-center justify-center"
                   >
                     <SquareIcon size={11} />
                   </button>
